@@ -16,7 +16,7 @@ if($id<1){
 }
 
 $setting = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM setting"));
-$admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=1"));
+$admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
 ?>
 
 <!DOCTYPE html>

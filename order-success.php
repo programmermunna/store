@@ -38,7 +38,7 @@
                             </div>
                         </form>
                     </header>
-
+                    <div class="table_parent">
                     <table class="table">
                                 <thead>
                                     <tr>
@@ -130,7 +130,7 @@
                                     </tr>
                               <?php  } ?>
                             </table>
-                            </table>
+                        </div>
                             <!-- -------------pagination---------------- -->
                         <br>
                         <div class="w-full" style="display: flex; justify-content: space-between;">

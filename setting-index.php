@@ -2,9 +2,7 @@
 <?php include("common/header.php");?>
 <!-- Header -->
 <?php
-if(isset($_GET['msg'])){
-  $msg = $_GET['msg'];
-}
+
 
 
 if(isset($_POST['submit'])){

@@ -383,10 +383,10 @@ if(isset($_POST['customer_add'])){
                                     </thead>
                                     <tbody id="selected_products_wrapper" class="text-sm divide-y divide-gray-300">
                                         <?php
-                    $tmp_product = mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no='$order'ORDER BY id DESC");
-                    $i = 0;
-                    while ($row = mysqli_fetch_assoc($tmp_product)) {
-                      $i++ ?>
+                                        $tmp_product = mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no='$order'ORDER BY id DESC");
+                                        $i = 0;
+                                        while ($row = mysqli_fetch_assoc($tmp_product)) {
+                                        $i++ ?>
                                         <tr>
                                             <!-- <td class="pt-5 pl-5">No data</td> -->
 
@@ -478,7 +478,7 @@ if(isset($_POST['customer_add'])){
             </div>
         </div>
 
-        <!-- here I am am added Product popur -->
+        <!-- here I am am added Product popup -->
 
                 <form action="" method="POST" enctype="multipart/form-data"> 
                     <div class="add_category_wrapper product_block" style="display:none;">

@@ -2,9 +2,7 @@
 <?php include("common/header.php");?>
 <!-- Header -->
 <?php
-if(isset($_GET['msg'])){
-  $msg = $_GET['msg'];
-}
+
 
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
@@ -19,7 +17,7 @@ if(isset($_POST['submit'])){
 
 
   if($new_pass===$confirm_pass){
-  $sql = "UPDATE admin_info SET name='$name',email='$email',pass='$new_pass',file='$file_name' WHERE id='1'"; 
+  $sql = "UPDATE admin_info SET name='$name',email='$email',pass='$new_pass',file='$file_name' WHERE id=$id"; 
   $query = mysqli_query($conn,$sql);
   if($query){
     $msg = "Successfully Updated";
@@ -31,7 +29,7 @@ if(isset($_POST['submit'])){
   $msg = "Somethings error! Please try again.";
 }
 }
-$admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=1"));
+$admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
 ?>
     <!-- Main Content -->
     <main class="main_content">
@@ -53,7 +51,7 @@ $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WH
         <!-- Page Main Content -->
         <div class="add_page_main_content">
           <h1 class="add_page_title">ADMIN INFORMATIONS
-              <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div><?php }?></h1>
+              </h1>
           <form id="setting_form" action="" method="POST" enctype="multipart/form-data">
           <div>
               <label>Name</label>

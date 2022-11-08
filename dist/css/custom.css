@@ -320,3 +320,14 @@ li.main-category.cat:hover .category-wrap {
   background: #fff;
   border: 2px solid #dfdfdf;
 }
+.add_product_main>div{
+  margin-top: 10px;
+}
+.add_product_main>div>input{
+  margin: 5px 0;
+}
+
+.table_parent{
+  padding: 10px;
+  overflow: auto;
+}

@@ -7,9 +7,7 @@ if(isset($_GET['id'])){
 }
 $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM seller WHERE id='$id'"));
 
-if(isset($_GET['msg'])){
-  $msg = $_GET['msg'];
-}
+
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];

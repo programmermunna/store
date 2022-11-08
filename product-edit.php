@@ -7,9 +7,7 @@ if(isset($_GET['id'])){
 }
 $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product WHERE id='$id'"));
 
-if(isset($_GET['msg'])){
-  $msg = $_GET['msg'];
-}
+
 if(isset($_POST['submit'])){
   $product_name = $_POST['product_name'];
   $sell_price = $_POST['sell_price'];

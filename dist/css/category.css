@@ -417,6 +417,7 @@ th {
 .categories_ul_ref {
   max-height: 300px;
   overflow-y: auto;
+  border: 1px solid #ddd;
 }
 
 .categories_ul ul {

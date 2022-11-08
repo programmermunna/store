@@ -3,15 +3,11 @@
 <!-- Header -->
 <?php
 
-if(isset($_GET['msg'])){ 
-  $msg = $_GET['msg'];
-}
-
 if(isset($_POST['submit'])){
     $category = $_POST['category'];
     $category_parent = $_POST['parent_category'];
 
-    $category_insert = mysqli_query($conn,"INSERT INTO category(category,parent_id) VALUE('$category','$category_parent')");
+    $category_insert = mysqli_query($conn,"INSERT INTO category(admin_id,category,parent_id) VALUE($id,'$category','$category_parent')");
 
     if($category_insert){
         $msg = "Created a new category";
@@ -61,7 +57,7 @@ if(isset($_POST['update'])){
                   <div class="pb-4 flex justify-between">
                     <p style="visibility: hidden;"></p>
                     <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div> <?php }?>
-                    <button class="show_add_new_cat px-4 py-2 text-sm bg-blue-600 text-white rounded focus:ring">Add New
+                    <button class="show_add_new_cat px-4 py-2 text-sm bg-blue-600 text-white rounded focus:ring">Add
                         Category</button>
                     </div>
                     <ul class="categories_ul"></ul>
@@ -71,13 +67,17 @@ if(isset($_POST['update'])){
                     <div class="add_category_wrapper" style="display: none;">
                         <div class="hide_add_new_cat fixed inset-0 w-full h-screen bg-black bg-opacity-50 z-40"></div>
                         <div class="fixed w-[96%] md:w-[500px] inset-0 m-auto bg-white rounded shadow z-50 h-fit">
-                        <h1 class="p-4 border-b">
+                        <h3 class="p-4 border-b text-center">
                             Add New Category
-                        </h1>
+                        </h3>
                         <div class="p-4 relative">
                             <label for="parent_cat">Parent Category</label>
                             <input required id="parent_cat" placeholder="Select Category" type="search" class="input mt-2">
                             <input name="parent_category" type="hidden" id="category-hidden-id">
+
+                            <script>
+                                console.log(document.getElementsByName("parent_category"));
+                            </script>
 
                             <div class="relative categories_ul_ref_parent" style="display: none;">
                             <ul class="categories_ul_ref ring-2 mt-2 ring-gray-100 rounded"></ul>

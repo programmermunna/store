@@ -7,9 +7,7 @@ if(isset($_GET['id'])){
 }
 $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM customer WHERE id='$id'"));
 
-if(isset($_GET['msg'])){
-  $msg = $_GET['msg'];
-}
+
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
@@ -59,7 +57,7 @@ if(isset($_POST['submit'])){
               <span class="eye_icon"></span>
             </a>
           </div>
-          <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div><?php }?>
+          
           <form id="edit_customer_form" action="" method="POST" enctype="multipart/form-data">
           <div>
             <label>Full Name</label>

@@ -2,9 +2,7 @@
 <?php include("common/header.php");?>
 <!-- Header -->
 <?php 
-if(isset($_GET['msg'])){
-    $msg = $_GET['msg'];
-  }
+
 ?>
 <!-- Main Content -->
 <main class="main_content">
@@ -33,7 +31,7 @@ if(isset($_GET['msg'])){
                             <h3>Pending Order</h3>
                         </div>
                         <div>
-                        <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div><?php }?>
+                        
                       </div>                    
                     </div>
                     <header class="table_header">
@@ -48,7 +46,7 @@ if(isset($_GET['msg'])){
                             </div>
                         </form>
                     </header>
-
+                    <div class="table_parent">
                     <table class="table">
                                 <thead>
                                     <tr>
@@ -142,7 +140,7 @@ if(isset($_GET['msg'])){
                                     </tr>
                               <?php  } ?>
                             </table>
-                            </table>
+                        </div>
                             <!-- -------------pagination---------------- -->
                         <br>
                         <div class="w-full" style="display: flex; justify-content: space-between;">

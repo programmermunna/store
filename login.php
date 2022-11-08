@@ -1,7 +1,5 @@
 <?php include("include/functions.php");
-if(isset($_GET['msg'])){
-  $msg = $_GET['msg'];
-}
+
 
 if(isset($_SESSION['admin_id'])){
   $id = $_SESSION['admin_id'];
@@ -56,7 +54,7 @@ if(isset($_POST['submit'])){
       <div
         class="text-left w-fit h-fit bg-white shadow-lg rounded overflow-hidden"
       >
-      <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div><?php }?></h1>
+      </h1>
         <div
           style="
             background-image: url('https://i.postimg.cc/XJ7NvTb6/istockphoto-1221025677-170667a.jpg');

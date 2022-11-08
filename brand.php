@@ -2,15 +2,12 @@
 <?php include("common/header.php");?>
 <!-- Header -->
 <?php
-if(isset($_GET['msg'])){
-    $msg = $_GET['msg'];
-  }
 
   
 if(isset($_POST['add_brand'])){
   $add_brand = $_POST['add_brand_name'];
 
-  $insert_brand = mysqli_query($conn,"INSERT INTO brand(name) VALUE('$add_brand')");
+  $insert_brand = mysqli_query($conn,"INSERT INTO brand(admin_id,name) VALUE($id'$add_brand')");
   if($insert_brand){
     $msg = "Successfully created a new Brand";
     header("location:brand.php?msg=$msg");
@@ -57,12 +54,12 @@ if(isset($_POST['update'])){
                             <h3>Brand</h3>
                         </div>
                         <div>
-                        <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div><?php }?>
+                        
                       </div>                    
                     </div>
                     <header class="table_header">
                         <div class="table_header_left">
-                        <button class="add_brand_btn show_add_new_cat px-4 py-2 text-sm bg-blue-600 text-white rounded focus:ring">Add New
+                        <button class="add_brand_btn show_add_new_cat px-4 py-2 text-sm bg-blue-600 text-white rounded focus:ring">Add
                         Brand</button>
                         </div>
 
@@ -73,8 +70,8 @@ if(isset($_POST['update'])){
                             </div>
                         </form>
                     </header>
-
-                             <table class="table">
+                            <div class="table_parent">
+                             <table class="table ">
                                 <thead>
                                     <tr>
                                         <th class="table_th"><div class="table_th_div"><span>Sl.</span></div></th>
@@ -137,7 +134,7 @@ if(isset($_POST['update'])){
                                     </tr>
                               <?php  } ?>
                             </table>
-                            </table>
+                            </div>
                             <!-- -------------pagination---------------- -->
                         <br>
                         <div class="w-full" style="display: flex; justify-content: space-between;">
@@ -201,9 +198,9 @@ if(isset($_POST['update'])){
                     <div class="add_category_wrapper add_brand" style="display: none;">
                         <div class="hide_add_new_cat fixed inset-0 w-full h-screen bg-black bg-opacity-50 z-40"></div>
                         <div class="fixed w-[96%] md:w-[500px] inset-0 m-auto bg-white rounded shadow z-50 h-fit">
-                        <h1 class="p-4 border-b">
+                        <h3 class="p-4 border-b text-center">
                             Add Brand
-                        </h1>
+                        </h3>
 
                         <div class="p-4 space-y-2">
                             <label for="cat_name">Brand Name</label>
@@ -263,7 +260,6 @@ if(isset($_POST['update'])){
   edit_brand_btn.addEventListener("click", ()=>{
     edit_brand.style.display="block";
   });
-
 
 </script>
 
