@@ -84,7 +84,6 @@ $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WH
               </a>
               <?php 
               if(isset($_POST['logout'])){
-
               setcookie('admin_id', $id , time() - 86000);
               if(isset($_SESSION['admin_id'])){
                   unset($_SESSION['admin_id']);
@@ -93,7 +92,7 @@ $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WH
               }
               header('location:login.php');
               } 
-              ?>   
+              ?>
               <form action="" method="POST">
               <p>
                 <span style="cursor:pointer;" class="logout_icon"></span>
