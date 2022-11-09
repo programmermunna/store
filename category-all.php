@@ -68,6 +68,7 @@ if(isset($_POST['update'])){
                         <div class="hide_add_new_cat fixed inset-0 w-full h-screen bg-black bg-opacity-50 z-40"></div>
                         <div class="fixed w-[96%] md:w-[500px] inset-0 m-auto bg-white rounded shadow z-50 h-fit">
                         <h3 class="p-4 border-b text-center">
+                        <h3 class="p-4 border-b text-center">
                             Add New Category
                         </h3>
                         <div class="p-4 relative">

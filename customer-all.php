@@ -100,7 +100,7 @@ if(isset($_POST['submit'])){
                                     <?php
                                 if(isset($_POST['search'])){
                                     $src_text = trim($_POST['src_text']);
-                                    $sql = "SELECT * FROM customer WHERE name = '$src_text' OR email = '$src_text' OR phone = '$src_text' OR address = '$src_text' OR city = '$src_text'";
+                                    $sql = "SELECT * FROM customer WHERE name = '$src_text' OR email = '$src_text' OR phone = '$src_text' OR address = '$src_text' OR city = '$src_text' AND admin_id=$id";
                                     $search_query = mysqli_query($conn,$sql);
                                  }
                                  if(isset($search_query)){
@@ -149,14 +149,14 @@ if(isset($_POST['submit'])){
                                     $currentPage = 1;
                                 }
                                 $startFrom = ($currentPage * $showRecordPerPage) - $showRecordPerPage;
-                                $totalEmpSQL = "SELECT * FROM customer ORDER BY id DESC";
+                                $totalEmpSQL = "SELECT * FROM customer WHERE admin_id=$id ORDER BY id DESC";
                                 $allEmpResult = mysqli_query($conn, $totalEmpSQL);
                                 $totalEmployee = mysqli_num_rows($allEmpResult);
                                 $lastPage = ceil($totalEmployee/$showRecordPerPage);
                                 $firstPage = 1;
                                 $nextPage = $currentPage + 1;
                                 $previousPage = $currentPage - 1;
-                                $empSQL = "SELECT * FROM customer ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
+                                $empSQL = "SELECT * FROM customer WHERE admin_id=$id ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
                                 $query = mysqli_query($conn, $empSQL);
                                 $i = 0;
                                 while($row = mysqli_fetch_assoc($query)){ $i++;

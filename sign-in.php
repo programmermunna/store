@@ -15,16 +15,32 @@ if(isset($_COOKIE['admin_id'])){
 }
 
 if(isset($_POST['submit'])){
+    $name = mysqli_real_escape_string($conn,$_POST['name']);
     $email = mysqli_real_escape_string($conn,$_POST['email']);
     $pass = md5($_POST['pass']);
+    $cpass = md5($_POST['cpass']);
+    $time = time();
+
     if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-    $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email' AND pass='$pass'"));
-    if($row>0){
-    $id = $row['id'];
-    $name = $row['name'];
-    $_SESSION['admin_id'] = $id;
-    setcookie('admin_id', $id , time()+86000);
-      header('location:index.php');
+      $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email'"));
+    if($check>0){
+        $err = "Alrady Have Account. Please Login";
+        header("location:sign-in.php?err=$err");
+      }else{
+      if($pass==$cpass){
+        $insert = mysqli_query($conn,"INSERT INTO admin_info(`name`, `email`, `pass`, `time`) VALUE('$name', '$email', '$pass', '$time')");
+        $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email' AND pass='$pass'"));
+        if($row>0){
+        $id = $row['id'];
+        $name = $row['name'];
+        $_SESSION['admin_id'] = $id;
+        setcookie('admin_id', $id , time()+86000);
+        header('location:index.php');
+        }
+      }else{
+        $err = "Password and Confirm Password are not match!";
+        header("location:sign-in.php?err=$err");
+      }
     }
   }
 }
@@ -40,7 +56,7 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="dist/css/login.css" />
+    <link rel="stylesheet" href="dist/css/login.css"/>
     <link rel="stylesheet" href="dist/css/styles.css" />
     <link rel="stylesheet" href="dist/css/custom.css" />
 </head>
@@ -51,10 +67,12 @@ if(isset($_POST['submit'])){
             <div class="left">
                 <div class="contact">
                     <form action="" method="POST" >
-                        <h3>LOGIN</h3>
-                        <input name="email" type="email" placeholder="EMAIL">
-                        <input name="pass" type="password" placeholder="PASSWORD">
-                        <button style="background:#EB75A4" name="submit" type="submit" class="submit">LOGIN</button>
+                        <h3>SING IN</h3>
+                        <input name="name" type="text" placeholder="Name" required>
+                        <input name="email" type="email" placeholder="EMAIL" required>
+                        <input name="pass" type="password" placeholder="PASSWORD" required>
+                        <input name="cpass" type="password" placeholder="CONFIRM PASSWORD" required>
+                        <button style="background:#EB75A4" name="submit" type="submit" class="submit">SIGN IN</button>
                     </form>
                 </div>
             </div>
@@ -70,5 +88,4 @@ if(isset($_POST['submit'])){
         </div>
     </section>
 </body>
-
 </html>

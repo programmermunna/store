@@ -27,7 +27,6 @@ $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WH
     <link href="dist/css/category.css" rel="stylesheet" />
     <link href="dist/css/styles.css" rel="stylesheet" />
     <link href="dist/css/custom.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   <body>
     <!-- Header -->

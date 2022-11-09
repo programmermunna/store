@@ -12,10 +12,6 @@ $total_total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(total) AS tota
 $total_vat = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(vat_cost) AS totalsum FROM tmp_product WHERE order_no='$order'"));
 
 
-if (isset($_GET['msg'])) {
-  $msg = $_GET['msg'];
-}
-
 $all_customer = mysqli_query($conn, "SELECT * FROM customer ORDER BY id DESC");
 if (isset($_POST['submit'])) {
   $customer_id = $_POST['customer_id'];
@@ -24,16 +20,15 @@ if (isset($_POST['submit'])) {
   $status = $_POST['status'];
   $time = time();
 
-  $product_check = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no='$order'"));
+  $product_check = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no='$order' AND admin_id=$id"));
   if ($product_check == true) {
-
-    $customer_check = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM customer WHERE id='$customer_id'"));
+    $customer_check = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM customer WHERE id='$customer_id' AND admin_id=$id"));
     if ($customer_check == true) {
 
-      $sql = "INSERT INTO tmp_product(order_no,customer_id,pay_method,amount,status,time) VALUES('$order','$customer_id','$pay_method','$amount','$status','$time')";
+      $sql = "INSERT INTO tmp_product(admin_id,order_no,customer_id,pay_method,amount,status,time) VALUES($id,'$order','$customer_id','$pay_method','$amount','$status','$time')";
       $query = mysqli_query($conn, $sql);
       if ($query) {
-        header("location:pos-invoice.php?order=$order&&customer=$customer_id&&status=$status ");
+        header("location:pos-invoice.php?order=$order&&customer=$customer_id&&status=$status");
       }
     } else {
       $msg = "Customer not found. Please Create customer";
@@ -62,7 +57,7 @@ if(isset($_POST['product_add'])){
     $file_tmp = $_FILES['file']['tmp_name'];
     move_uploaded_file($file_tmp,"upload/$file_name");
 
-    $sql = "INSERT INTO product(product_name,sell_price,product_code,vat,brand,category,date,file,time) VALUES('$product_name','$sell_price','$product_code','$vat','$brand','$category','$date','$file_name','$time')";
+    $sql = "INSERT INTO product(admin_id,product_name,sell_price,product_code,vat,brand,category,date,file,time) VALUES($id,'$product_name','$sell_price','$product_code','$vat','$brand','$category','$date','$file_name','$time')";
     $query = mysqli_query($conn,$sql);
     if($query){
      $msg = "Successfully Created New Product!";
@@ -85,7 +80,7 @@ if(isset($_POST['customer_add'])){
   $file_tmp = $_FILES['file']['tmp_name'];
   move_uploaded_file($file_tmp,"upload/$file_name");
 
-  $sql = "INSERT INTO customer(name,email,phone,address,city,file,time) VALUES('$name','$email','$phone','$address','$city','$file_name','$time')";
+  $sql = "INSERT INTO customer(admin_id,name,email,phone,address,city,file,time) VALUES($id,'$name','$email','$phone','$address','$city','$file_name','$time')";
   $query = mysqli_query($conn,$sql);
   if($query){
   $msg = "Successfully Created New Customer!";
@@ -94,10 +89,6 @@ if(isset($_POST['customer_add'])){
   echo "Something is worng!";
   }
 }
-
-
-
-
 
 
 
@@ -183,11 +174,6 @@ if(isset($_POST['customer_add'])){
                                             </div>
                                         </th>
                                         <th class="table_th">
-                                            <div class="table_th_div">
-                                                <span>Code</span>
-                                            </div>
-                                        </th>
-                                        <th class="table_th">
                                             <span>Action</span>
                                         </th>
                                     </tr>
@@ -197,7 +183,7 @@ if(isset($_POST['customer_add'])){
                             <?php
                             if (isset($_POST['search'])) {
                                 $src_text = trim($_POST['src_text']);
-                                $sql = "SELECT * FROM product WHERE product_name = '$src_text' OR  product_code = '$src_text' OR category = '$src_text' ORDER BY id DESC";
+                                $sql = "SELECT * FROM product WHERE product_name = '$src_text' OR brand = '$src_text' OR category = '$src_text' AND admin_id=$id ORDER BY id DESC";
                                 $search_query = mysqli_query($conn, $sql);
                             }
                             if (isset($search_query)) {
@@ -220,9 +206,6 @@ if(isset($_POST['customer_add'])){
                                         <td class="p-3 border whitespace-nowrap">
                                             <div class="text-center"><?php echo $row['category'] ?></div>
                                         </td>
-                                        <td class="p-3 border whitespace-nowrap">
-                                            <div class="text-center"><?php echo $row['product_code'] ?></div>
-                                        </td>
 
                                         <td class="p-3 border whitespace-nowrap">
                                             <div class="w-full flex_center">
@@ -240,14 +223,14 @@ if(isset($_POST['customer_add'])){
                                 $currentPage = 1;
                                 }
                                 $startFrom = ($currentPage * $showRecordPerPage) - $showRecordPerPage;
-                                $totalEmpSQL = "SELECT * FROM product ORDER BY id DESC";
+                                $totalEmpSQL = "SELECT * FROM product WHERE admin_id=$id ORDER BY id DESC";
                                 $allEmpResult = mysqli_query($conn, $totalEmpSQL);
                                 $totalEmployee = mysqli_num_rows($allEmpResult);
                                 $lastPage = ceil($totalEmployee / $showRecordPerPage);
                                 $firstPage = 1;
                                 $nextPage = $currentPage + 1;
                                 $previousPage = $currentPage - 1;
-                                $empSQL = "SELECT * FROM product ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
+                                $empSQL = "SELECT * FROM product WHERE admin_id=$id ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
                                 $query = mysqli_query($conn, $empSQL);
                                 $i = 0;
                                 while ($row = mysqli_fetch_assoc($query)) {
@@ -267,9 +250,6 @@ if(isset($_POST['customer_add'])){
                                         </td>
                                         <td class="p-3 border whitespace-nowrap">
                                             <div class="text-center"><?php echo $row['category'] ?></div>
-                                        </td>
-                                        <td class="p-3 border whitespace-nowrap">
-                                            <div class="text-center"><?php echo $row['product_code'] ?></div>
                                         </td>
 
                                         <td class="p-3 border whitespace-nowrap">
@@ -383,10 +363,8 @@ if(isset($_POST['customer_add'])){
                                     </thead>
                                     <tbody id="selected_products_wrapper" class="text-sm divide-y divide-gray-300">
                                         <?php
-                                        $tmp_product = mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no='$order'ORDER BY id DESC");
-                                        $i = 0;
-                                        while ($row = mysqli_fetch_assoc($tmp_product)) {
-                                        $i++ ?>
+                                        $tmp_product = mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no='$order' AND admin_id=$id ORDER BY id DESC");
+                                        while ($row = mysqli_fetch_assoc($tmp_product)) { ?>
                                         <tr>
                                             <!-- <td class="pt-5 pl-5">No data</td> -->
 
@@ -479,7 +457,6 @@ if(isset($_POST['customer_add'])){
         </div>
 
         <!-- here I am am added Product popup -->
-
                 <form action="" method="POST" enctype="multipart/form-data"> 
                     <div class="add_category_wrapper product_block" style="display:none;">
                         <div class="hide_add_new_cat fixed inset-0 w-full h-screen bg-black bg-opacity-50 z-40"></div>
@@ -488,7 +465,7 @@ if(isset($_POST['customer_add'])){
                             Add Product
                         </h1>
 
-                        <div style="padding:15px 0;">
+                        <div style="padding:15px 0;" class="add_product_main">
                             <label>Product Name</label>
                             <input type="text" name="product_name" placeholder="Product name" class="input" />
                             </div>
@@ -555,7 +532,7 @@ if(isset($_POST['customer_add'])){
                     <div class="add_category_wrapper customer_block" style="display: none;">
                         <div class="hide_add_new_cat fixed inset-0 w-full h-screen bg-black bg-opacity-50 z-40"></div>
                         <div class="fixed w-[96%] md:w-[500px] p-5 inset-0 m-auto bg-white rounded shadow z-50 h-fit">
-                        <h1 style="text-align:center;" class="p-4 border-b">
+                        <h1 style="text-align:center;" class="p-4 border-b ">
                             Add Customer
                         </h1>
 

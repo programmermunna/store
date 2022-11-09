@@ -1,5 +1,5 @@
 <?php
-$category = mysqli_query($conn, "SELECT * FROM category");
+$category = mysqli_query($conn, "SELECT * FROM category WHERE admin_id=$id");
 $arr = array();
 while ($row = mysqli_fetch_assoc($category)) {
     $json[] = $row;

@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
                             </div>
                         </form>
                     </header>
-                    <div class="table_parent">
+                    <div style="margin:20px;overflow:auto">
                     <table class="table">
                         <thead>
                             <tr>
@@ -101,7 +101,7 @@ if(isset($_POST['submit'])){
                             <?php
                                 if(isset($_POST['search'])){
                                     $src_text = trim($_POST['src_text']);
-                                    $sql = "SELECT * FROM product WHERE product_name = '$src_text' OR sell_price = '$src_text' OR product_code = '$src_text' OR brand = '$src_text' OR category = '$src_text' OR date = '$src_text'";
+                                    $sql = "SELECT * FROM product WHERE product_name = '$src_text' OR sell_price = '$src_text' OR product_code = '$src_text' OR brand = '$src_text' OR category = '$src_text' OR date = '$src_text' AND admin_id=$id";
                                     $search_query = mysqli_query($conn,$sql);
                                  }
                                  if(isset($search_query)){
@@ -153,14 +153,14 @@ if(isset($_POST['submit'])){
                                     $currentPage = 1;
                                 }
                                 $startFrom = ($currentPage * $showRecordPerPage) - $showRecordPerPage;
-                                $totalEmpSQL = "SELECT * FROM product ORDER BY id DESC";
+                                $totalEmpSQL = "SELECT * FROM product WHERE admin_id=$id ORDER BY id DESC";
                                 $allEmpResult = mysqli_query($conn, $totalEmpSQL);
                                 $totalEmployee = mysqli_num_rows($allEmpResult);
                                 $lastPage = ceil($totalEmployee/$showRecordPerPage);
                                 $firstPage = 1;
                                 $nextPage = $currentPage + 1;
                                 $previousPage = $currentPage - 1;
-                                $empSQL = "SELECT * FROM product ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
+                                $empSQL = "SELECT * FROM product WHERE admin_id=$id ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
                                 $query = mysqli_query($conn, $empSQL);
                                 $i = 0;
                                 while($row = mysqli_fetch_assoc($query)){ $i++;
@@ -205,6 +205,7 @@ if(isset($_POST['submit'])){
                             </tr>
                             <?php  } ?>
                         </tbody>
+                    </table>
                     </div>
                     <!-- -------------pagination---------------- -->
                     <br>

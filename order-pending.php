@@ -1,9 +1,6 @@
 <!-- Header -->
 <?php include("common/header.php");?>
 <!-- Header -->
-<?php 
-
-?>
 <!-- Main Content -->
 <main class="main_content">
     <!-- Side Navbar Links -->
@@ -65,7 +62,7 @@
                                 <?php
                                 if(isset($_POST['search'])){
                                     $src_text = trim($_POST['src_text']);
-                                    $sql = "SELECT * FROM tmp_product WHERE order_no = '$src_text' AND status='Pending'";
+                                    $sql = "SELECT * FROM tmp_product WHERE order_no = '$src_text' AND status='Pending' AND admin_id=$id";
                                     $search_query = mysqli_query($conn,$sql);
                                  }
                                  if(isset($search_query)){
@@ -103,7 +100,7 @@
                                     $currentPage = 1;
                                 }
                                 $startFrom = ($currentPage * $showRecordPerPage) - $showRecordPerPage;
-                                $totalEmpSQL = "SELECT * FROM tmp_product WHERE status='Pending' ORDER BY id DESC";
+                                $totalEmpSQL = "SELECT * FROM tmp_product WHERE status='Pending'AND admin_id=$id ORDER BY id DESC";
                                 $allEmpResult = mysqli_query($conn, $totalEmpSQL);
                                 $totalEmployee = mysqli_num_rows($allEmpResult);
                                 $lastPage = ceil($totalEmployee/$showRecordPerPage);
@@ -111,7 +108,7 @@
                                 $nextPage = $currentPage + 1;
                                 $previousPage = $currentPage - 1;
                                 
-                                $empSQL = "SELECT * FROM tmp_product WHERE status='Pending' ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
+                                $empSQL = "SELECT * FROM tmp_product WHERE status='Pending'AND admin_id=$id ORDER BY id DESC LIMIT $startFrom, $showRecordPerPage";
                                 $query = mysqli_query($conn, $empSQL);
                                 $i = 0;
                                 while($row = mysqli_fetch_assoc($query)){ $i++;

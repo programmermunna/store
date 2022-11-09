@@ -3,14 +3,14 @@
 <!-- Header -->
 <?php 
      
-    $product = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM product"));
-    $pending_order = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tmp_product WHERE status='Pending'"));
-    $success_order = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tmp_product WHERE status='Success'"));
-    $customer = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM customer"));
+    $product = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM product WHERE admin_id=$id"));
+    $pending_order = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tmp_product WHERE status='Pending' AND admin_id=$id"));
+    $success_order = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tmp_product WHERE status='Success' AND admin_id=$id"));
+    $customer = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM customer WHERE admin_id=$id"));
 
-    $total_amount = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(total) FROM tmp_product"));
-    $total_pending = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(amount) FROM tmp_product WHERE status='Pending'"));
-    $total_success = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(amount) FROM tmp_product WHERE status='Success'"));
+    $total_amount = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(total) FROM tmp_product WHERE admin_id=$id"));
+    $total_pending = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(amount) FROM tmp_product WHERE status='Pending' AND admin_id=$id"));
+    $total_success = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(amount) FROM tmp_product WHERE status='Success' AND admin_id=$id"));
 
 
     $total_amount = $total_amount['SUM(total)'];
