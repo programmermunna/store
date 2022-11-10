@@ -40,6 +40,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_info WHER
                                 <li><a href="about.php">About</a></li>
                                 <li><a href="my-account.php">My Account</a></li>
                                 <li><a href="user-logout.php">Logout</a></li>
+                                <li><a class="header-last-itme" href="order.php">Buy now</a></li>
                             </ul>
                           <?php  }else{?>
                             <ul>
@@ -47,6 +48,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_info WHER
                                 <li><a href="about.php">About</a></li>
                                 <li><a href="user-login.php">Login</a></li>
                                 <li><a href="user-signin.php">Sign In</a></li>
+                                <li><a class="header-last-itme" href="order.php">Buy now</a></li>
                             </ul>
                             <?php }?>
                         </div>                        

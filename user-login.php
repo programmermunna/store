@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     $user_id = $row['id'];
     $_SESSION['user_id'] = $user_id;
     setcookie('user_id', $user_id , time()+86000);
-      header('location:home.php');
+      header('location:my-account.php');
     }
   }
 }

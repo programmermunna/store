@@ -1,39 +1,9 @@
 <?php include("common/home-header.php")?>
         <main>
-            <section class="hero">
-                <div class="container">
-                    <div class="hero-inner">
-						<div class="hero-copy">
-	                        <h1 class="hero-title mt-0">Landing template for startups</h1>
-	                        <p class="hero-paragraph">Our landing page template works on all devices, so you only have to set it up once, and get beautiful results forever.</p>
-	                        <div class="hero-cta">
-								<a class="button button-primary" href="order.php">Buy it now</a>
-							</div>
-						</div>
-						<div class="hero-media">
-						<img class="template_img" src="upload/store.jpg">
-						</div>
-                    </div>
-                </div>
-            </section>
-
             <section class="features section">
                 <div class="container">
 					<div class="features-inner section-inner has-bottom-divider">
-						<div class="features-header text-center">
-							<div class="container-sm">
-								<h2 class="section-title mt-0">The Product</h2>
-	                            <p class="section-paragraph">Lorem ipsum is common placeholder text used to demonstrate the graphic elements of a document or visual presentation.</p>
-								<div class="features-image">
-									<img class="features-illustration asset-dark" src="landing-dist/images/features-illustration-dark.svg" alt="Feature illustration">
-									<img class="features-box asset-dark" src="landing-dist/images/features-box-dark.svg" alt="Feature box">
-									<img class="features-illustration asset-dark" src="landing-dist/images/features-illustration-top-dark.svg" alt="Feature illustration top">
-									<img class="features-illustration asset-light" src="landing-dist/images/features-illustration-light.svg" alt="Feature illustration">
-									<img class="features-box asset-light" src="landing-dist/images/features-box-light.svg" alt="Feature box">
-									<img class="features-illustration asset-light" src="landing-dist/images/features-illustration-top-light.svg" alt="Feature illustration top">
-								</div>
-							</div>
-                        </div>
+
                         <div class="features-wrap">
                             <div class="feature is-revealing">
                                 <div class="feature-inner">
@@ -72,6 +42,10 @@
 								</div>
                             </div>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </section>
