@@ -13,10 +13,10 @@ if(isset($_POST['submit'])){
     $amount = $_POST['amount'];
     $time = time();
 
-    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `address`, `years`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$address', '$years', '$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");
+    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years', '$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");
     if($insert){
-        $msg = "Congratulations fo Order!";
-        header("localtion:order.php?msg=$msg");
+        $msg = "Congratulations for Order!";
+        header("location:order.php?msg=$msg");
     }
 }
 

@@ -83,3 +83,22 @@ label{
     height: 200px;
     border-radius: 5px;
 }
+.top_search{
+    padding: 0 20px;
+}
+.top_search>form>input{
+    box-shadow: 0 0 2px gray;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    outline: none;
+}
+.top_search>form>button{
+    box-shadow: 0 0 2px gray;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+}
+.top_search>form>button:hover{
+    background: rgb(255, 231, 231);
+}

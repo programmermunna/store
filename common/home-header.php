@@ -33,7 +33,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHE
                         <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="landing-dist/images/logo-light.svg" alt="Logo">LOGO</a></div>
                         <div class="nav">
                             <?php
-                            $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_info WHERE id=$user_id"));
+                            $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$user_id"));
                             if($check>0){ ?>
                             <ul>
                                 <li><a href="home.php">Home</a></li>
