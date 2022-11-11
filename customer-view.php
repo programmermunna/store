@@ -25,7 +25,7 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM customer WHERE id='$
             <small>View Customer</small>
           </div>
         </div>
-
+ 
         <!-- Page Main Content -->
         <div class="add_page_main_content">
           <div class="add_page_title">
