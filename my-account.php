@@ -25,9 +25,6 @@ if(isset($_POST['submit'])){
     }
 }
     $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
-    // $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT Orders.*, user_info.* FROM Orders INNER JOIN user_info ON Orders.user_id=user_info.id;"));
-
-
 
 ?>
         <main>

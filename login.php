@@ -1,6 +1,5 @@
 <?php include("include/functions.php");
 
-
 if(isset($_SESSION['admin_id'])){
   $id = $_SESSION['admin_id'];
   if($id>0){

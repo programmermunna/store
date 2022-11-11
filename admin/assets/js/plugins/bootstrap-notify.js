@@ -83,14 +83,14 @@
 
     $('[data-notify="container"]').each(function(i, el) {
       var $el = $(el);
-      var title = $el.find('[data-notify="title"]').html().trim();
-      var message = $el.find('[data-notify="message"]').html().trim();
+      var title = $el.find('[data-notify="title"]')().trim();
+      var message = $el.find('[data-notify="message"]')().trim();
 
       // The input string might be different than the actual parsed HTML string!
       // (<br> vs <br /> for example)
       // So we have to force-parse this as HTML here!
-      var isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>").html().trim();
-      var isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>").html().trim();
+      var isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>")().trim();
+      var isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>")().trim();
       var isSameType = $el.hasClass('alert-' + notification.settings.type);
 
       if (isSameTitle && isSameMsg && isSameType) {
@@ -195,7 +195,7 @@
                 this.$ele.find('[data-notify="url"]').attr('target', commands[cmd]);
                 break;
               default:
-                this.$ele.find('[data-notify="' + cmd + '"]').html(commands[cmd]);
+                this.$ele.find('[data-notify="' + cmd + '"]')(commands[cmd]);
             }
           }
           var posX = this.$ele.outerHeight() + parseInt(self.settings.spacing) + parseInt(self.settings.offset.y);

@@ -179,7 +179,7 @@ $_luminance-list: .0008 .001 .0011 .0013 .0015 .0017 .002 .0022 .0025 .0027 .003
 
 // Return WCAG2.0 relative luminance
 // See https://www.w3.org/WAI/GL/wiki/Relative_luminance
-// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+// See https://www.w3.org/TR/WCAG20-TECHS/G17#G17-tests
 @function luminance($color) {
   $rgb: (
     "r": red($color),

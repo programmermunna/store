@@ -69,7 +69,7 @@ const view_customer = customers.find((c) => c.id === get_id);
 const view_customer_form = document.getElementById("view_customer_form");
 
 function edit_info_btn() {
-  location.replace(`edit.html?id=${get_id}`);
+  location.replace(`edit?id=${get_id}`);
 }
 
 view_customer_form.innerHTML = `
@@ -130,5 +130,5 @@ view_customer_form.addEventListener("submit", function (e) {
   //   Update function (1)
 
   // Then go to customers page (2)
-  location.replace("all-customers.html");
+  location.replace("all-customers");
 });
