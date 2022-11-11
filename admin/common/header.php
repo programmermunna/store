@@ -1,22 +1,20 @@
 <?php include('../include/functions.php');
-
-// if(!session_start()){ session_start();}
-// if(isset($_SESSION['admin_id'])){
-//    $id = $_SESSION['admin_id'];
-//    $getUser = "SELECT * FROM admin_info WHERE id='$id'";
-//    $userQuery = mysqli_query($conn,$getUser);
-//    $user = mysqli_fetch_assoc($userQuery);   
-// }elseif(isset($_COOKIE['admin_id'])){
-//   $id = $_COOKIE['admin_id'];
-// }else{
-//   $id = 0;
-// }
-// if(isset($_SESSION['admin_id'])){
-//   $id = $_SESSION['admin_id'];
-// }
-// if($id<1){
-//   header('location:index.php');
-// }
+if(isset($_SESSION['super_admin_id'])){
+   $id = $_SESSION['super_admin_id'];
+   $getUser = "SELECT * FROM super_admin WHERE id='$id'";
+   $userQuery = mysqli_query($conn,$getUser);
+   $user = mysqli_fetch_assoc($userQuery);   
+}elseif(isset($_COOKIE['super_admin_id'])){
+  $id = $_COOKIE['super_admin_id'];
+}else{
+  $id = 0;
+}
+if(isset($_SESSION['super_admin_id'])){
+  $id = $_SESSION['super_admin_id'];
+}
+if($id<1){
+  header('location:login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

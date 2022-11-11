@@ -7,7 +7,6 @@ if(isset($_GET['src'])){
   $src = $_GET['src'];
   $id = $_GET['id'];
 }
-$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT* FROM admin_info WHERE id='$id'"));
 
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
@@ -20,20 +19,20 @@ if(isset($_POST['submit'])){
   move_uploaded_file($file_tmp,"upload/$file_name");
 
   if(empty($file_name)){
-    $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address', time='$time' WHERE id=$id");
+    $user_update = mysqli_query($conn,"UPDATE super_admin SET name='$name', email='$email', address='$address', time='$time' WHERE id=1");
   }else{
-    $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',file='$file_name', time='$time' WHERE id=$id");
+    $user_update = mysqli_query($conn,"UPDATE super_admin SET name='$name', email='$email', address='$address',file='$file_name', time='$time' WHERE id=1");
   }
 
 
   if($user_update){
     $msg = "Successfully Updated!";
-    header("location:users-edit.php?src=$src&&id=$id&&msg=$msg");
+    header("location:profile.php?msg=$msg");
   }else{
     echo "something wrong!";
   }
 }
-$user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
+$user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM super_admin WHERE id=1"));
 ?>
   <div class="container-fluid py-4">
       <div class="row">
@@ -66,10 +65,10 @@ $user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHE
                               </div>
                               <div>
                                 <label for="address">Photo</label>
-                                <input name="file" type="file">
+                                <input name="file" type="file" value="<?php echo $user_data['address']?>">
                               </div>
-                          </div>                          
-                          <div> 
+                          </div>
+                          <div>                            
                             <input name="submit" class="submit_btn" type="submit" value="Save">
                           </div>
                         </div>

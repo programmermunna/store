@@ -1,33 +1,33 @@
 <?php include('../include/functions.php'); ?>
 <?php 
-//============session&cookie========//
-
-// if(!session_start()){session_start();}  
-// if(isset($_SESSION['admin_id'])){
-//   $id = $_SESSION['admin_id'];
-//   if($id>0){
-//     header('location:home.php');
-//   }
-// } 
-// if(isset($_COOKIE['admin_id'])){
-//   $id = $_COOKIE['admin_id'];
-//   if($id>0){
-//     header('location:home.php');
-//   }
-// }
+//============session&cookie========// 
+if(isset($_SESSION['super_admin_id'])){
+  $id = $_SESSION['super_admin_id'];
+  if($id>0){
+    header('location:index.php');
+  }
+} 
+if(isset($_COOKIE['super_admin_id'])){
+  $id = $_COOKIE['super_admin_id'];
+  if($id>0){
+    header('location:index.php');
+  }
+}
 
 //============Login========//
-
 if(isset($_POST['submit'])){
   $email =$_POST['email'];
   $pass = md5($_POST['pass']); 
-  $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email' AND pass='$pass'"));
+  $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM super_admin WHERE email='$email' AND pass='$pass'"));
   if($row>0){
       $id = $row['id'];
-      $_SESSION['admin_id'] = $id;
-      setcookie('admin_id', $id , time()+86000);
-      header('location:home.php');
-  } 
+      $_SESSION['super_admin_id'] = $id;
+      setcookie('super_admin_id', $id , time()+86000);
+      header('location:index.php');
+  }else{
+    $msg = "Your Email or Password is wrong!";
+    header("location:login.php?msg=$msg");
+  }
 }
 
 ?>
@@ -67,7 +67,7 @@ if(isset($_POST['submit'])){
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
+                <form role="form" class="text-start" action="" method="POST">
                   <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
                     <input name="email" type="email" class="form-control">

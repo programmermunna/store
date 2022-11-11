@@ -18,11 +18,12 @@ if(isset($_POST['submit'])){
   $pmn_number = $_POST['pmn_number'];
   $trans_id = $_POST['trans_id'];
   $years = $_POST['years'];
+  $amount = $_POST['amount'];
   $status = $_POST['status'];
   $time = time();
 
   $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',permision='$status', time='$time' WHERE id=$id");
-  $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years',  status='$status', time='$time' WHERE user_id=$id");
+  $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', amount='$amount', status='$status', time='$time' WHERE user_id=$id");
 
   if($user_update && $order_update){
     $msg = "Successfully Updated!";
@@ -93,6 +94,14 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                               <option value="100">Lifetime</option>
                             </select>
                           </div>
+
+                          <div>
+                              <div style="width:100%;margin:0;padding:0;">
+                                <input name="amount" type="text" value="<?php echo $order_data['amount']?>">
+                              </div>
+                          </div>
+
+
                           <div>
                             <select name="status">
                               <?php
