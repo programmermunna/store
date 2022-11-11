@@ -5,9 +5,21 @@ if(isset($_GET['src'])){
 }
 switch ($src) {
     case "pending-orders":
-        if(mysqli_query($conn,"DELETE FROM orders WHERE user_id=$id") && mysqli_query($conn,"DELETE FROM user_info WHERE id=$id")){
+        if(mysqli_query($conn,"DELETE FROM orders WHERE user_id=$id") && mysqli_query($conn,"DELETE FROM admin_info WHERE id=$id")){
             $msg = "Successfully Deleted!";
             header("location:$src.php?msg=$msg");
+        }
+      break;
+    case "success-orders":
+        if(mysqli_query($conn,"DELETE FROM orders WHERE user_id=$id") && mysqli_query($conn,"DELETE FROM admin_info WHERE id=$id")){
+            $msg = "Successfully Deleted!";
+            header("location:$src.php?msg=$msg");
+        }
+      break;
+    case "users":
+        if(mysqli_query($conn,"DELETE FROM admin_info WHERE id=$id")){
+            $msg = "Successfully Deleted!";
+            header("location:$src-all.php?msg=$msg");
         }
       break;
     default:

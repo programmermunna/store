@@ -8,7 +8,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Pending Orders</h6>
+                <h6 class="text-white text-capitalize ps-3">Users All</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -16,14 +16,12 @@
                 <table class="table align-items-center mb-0">
                   <thead>
                     <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Method</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Payment Numbser</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Transection ID</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Years</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Photo</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Join Date</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Order Status</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
@@ -39,12 +37,12 @@
                   $next_page = $page_no + 1;
                   $adjacents = "2"; 
 
-                  $result_count = mysqli_query($conn,"SELECT * FROM orders WHERE status='Pending'");
+                  $result_count = mysqli_query($conn,"SELECT * FROM admin_info");
                   $total_records = mysqli_num_rows($result_count);
                   $total_no_of_pages = ceil($total_records / $total_records_per_page);
                   $second_last = $total_no_of_pages - 1;
 
-                  $result = mysqli_query($conn,"SELECT Orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE status='Pending' LIMIT $offset, $total_records_per_page");
+                  $result = mysqli_query($conn,"SELECT * FROM admin_info LIMIT $offset, $total_records_per_page");
                   while($data= mysqli_fetch_assoc($result)){?>
                     <tr>
                       <td>
@@ -52,37 +50,30 @@
                           <div>
                             <img src="../upload/<?php echo $data['file'];?>" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
                           </div>
-                          <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm"><?php echo $data['name'];?></h6>
-                            <p class="text-xs text-secondary mb-0"><?php echo $data['email'];?></p>
-                            <p class="text-xs text-secondary mb-0"><?php echo $data['address'];?></p>
-                          </div>
                         </div>
                       </td>                      
                       <td class="align-middle text-center text-sm">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['pmn_method'];?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['name'];?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['pmn_number'];?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['email'];?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['trans_id'];?></span>
-                      </td>
-                      <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $data['years'];?></p>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['amount'];?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['address'];?></span>
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['time']);?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-xs font-weight-bold badge badge-sm bg-gradient-danger"><?php echo $data['status'];?></span>
+                        <?php if($data['permision']=='Pending'){ ?>
+                          <span class="text-xs font-weight-bold badge badge-sm bg-gradient-danger"><?php echo $data['permision'];?></span>
+                     <?php }else{?>
+                        <span class="text-xs font-weight-bold badge badge-sm bg-gradient-success"><?php echo $data['permision'];?></span>
+                        <?php }?>
                       </td>
                       <td style="text-align:center">
-                        <a href="orders-edit.php?src=pending-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
-                        <a href="delete.php?src=pending-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
+                        <a href="users-edit.php?src=users-all&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
+                        <a href="delete.php?src=users&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
                       </td>
                     </tr>
                     <?php }?>

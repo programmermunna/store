@@ -8,7 +8,7 @@ if(isset($_SESSION['user_id'])){
 }else{
   $user_id = 0;
 }
-$user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_info WHERE id=$user_id"));
+$user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$user_id"));
 ?>
 
 

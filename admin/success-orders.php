@@ -8,7 +8,7 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Pending Orders</h6>
+                <h6 class="text-white text-capitalize ps-3">Success Orders</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -39,12 +39,12 @@
                   $next_page = $page_no + 1;
                   $adjacents = "2"; 
 
-                  $result_count = mysqli_query($conn,"SELECT * FROM orders WHERE status='Pending'");
+                  $result_count = mysqli_query($conn,"SELECT * FROM orders WHERE status='Success'");
                   $total_records = mysqli_num_rows($result_count);
                   $total_no_of_pages = ceil($total_records / $total_records_per_page);
                   $second_last = $total_no_of_pages - 1;
 
-                  $result = mysqli_query($conn,"SELECT Orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE status='Pending' LIMIT $offset, $total_records_per_page");
+                  $result = mysqli_query($conn,"SELECT Orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE status='Success' LIMIT $offset, $total_records_per_page");
                   while($data= mysqli_fetch_assoc($result)){?>
                     <tr>
                       <td>
@@ -78,11 +78,11 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['time']);?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-xs font-weight-bold badge badge-sm bg-gradient-danger"><?php echo $data['status'];?></span>
+                        <span class="text-xs font-weight-bold badge badge-sm bg-gradient-success"><?php echo $data['status'];?></span>
                       </td>
                       <td style="text-align:center">
-                        <a href="orders-edit.php?src=pending-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
-                        <a href="delete.php?src=pending-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
+                        <a href="orders-edit.php?src=success-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
+                        <a href="delete.php?src=success-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
                       </td>
                     </tr>
                     <?php }?>

@@ -11,14 +11,14 @@ if(isset($_POST['submit'])){
     $time = time();
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-      $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_info WHERE email='$email'"));
+      $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email'"));
     if($check>0){
         $err = "Alrady Have Account. Please Login";
         header("location:user-signin.php?err=$err");
       }else{
       if($pass==$cpass){
-        $insert = mysqli_query($conn,"INSERT INTO user_info(`name`, `email`, `pass`, `time`) VALUE('$name', '$email', '$pass', '$time')");
-        $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_info WHERE email='$email' AND pass='$pass'"));
+        $insert = mysqli_query($conn,"INSERT INTO admin_info(`name`, `email`, `pass`, `time`) VALUE('$name', '$email', '$pass', '$time')");
+        $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email' AND pass='$pass'"));
         if($row>0){
         $user_id = $row['id'];
         $_SESSION['user_id'] = $user_id;
