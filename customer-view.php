@@ -22,7 +22,7 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM customer WHERE id='$
             <small>/</small>
             <a href="all.php"><small>All Customer</small></a>
             <small>/</small>
-            <small>View Customer</small>
+            <small>View Customer</small> 
           </div>
         </div>
  
