@@ -61,27 +61,13 @@ if(isset($_POST['submit'])){
                             <h3><?php echo $user_info['name']?></h3>
                             <p><?php echo $user_info['email']?></p>
                             <p><?php echo $user_info['address']?></p>
-                            <span>renew: <b><?php if(isset($order_info['years'])){echo $order_info['years']." Years"; }else{echo "Unavailable";}?></b></span>
+                            <span>renew: <b><?php if(isset($order_info['years_num'])){echo $order_info['years_num']." Years"; }else{echo "Unavailable";}?></b></span>
                             <span>Payment Method: <b><?php if(isset($order_info['pmn_method'])){echo $order_info['pmn_method'];}else{echo "Unavailable";}?></b></span>
                             <span>Payment Number: <b><?php if(isset($order_info['pmn_number'])){echo $order_info['pmn_number'];}else{echo "Unavailable";}?></b></span>
                             <span>Transection ID: <b><?php if(isset($order_info['trans_id'])){echo $order_info['trans_id'];}else{echo "Unavailable";}?></b></span>
                             <span>Amount: <b><?php if(isset($order_info['amount'])){echo $order_info['amount']." ৳";}else{echo "Unavailable";}?></b></span>
-
-
-
-                            <span>Left: <b><?php if(isset($order_info['years'])){
-                                
-                                
-                                // echo $order_info['time'];
-                                
-                                echo time_elapsed_string($order_info['years']);}else{echo "Unavailable";}
-                                
-                                
-                                ?></b></span>
-
-
-
-
+                            
+                            <span>Remainder: <b><?php if(isset($order_info['years'])){$years = $order_info['years'];remainder($years);}else{echo "Unavailable";}?></b></span>
                             <span><b><a target="_blank" href="login.php">GO TO DASHBOARD</a></b></span>
                             </div>
                             <div>

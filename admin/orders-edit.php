@@ -18,12 +18,15 @@ if(isset($_POST['submit'])){
   $pmn_number = $_POST['pmn_number'];
   $trans_id = $_POST['trans_id'];
   $years = $_POST['years'];
+  $years_num = $years;
+  $years = ($years*365)*86400;
+  $years = time()+$years;
   $amount = $_POST['amount'];
   $status = $_POST['status'];
   $time = time();
 
   $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',permision='$status', time='$time' WHERE id=$id");
-  $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', amount='$amount', status='$status', time='$time' WHERE user_id=$id");
+  $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', years_num='$years_num', amount='$amount', status='$status', time='$time' WHERE user_id=$id");
 
   if($user_update && $order_update){
     $msg = "Successfully Updated!";
@@ -80,8 +83,8 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                               </div>
                           </div>
                           <div>
-                            <select name="years" id="">
-                              <option style="visibility :hidden" selected value="<?php echo $order_data['years']?>"><?php echo $data['years']?> Years</option>
+                            <select name="years">
+                              <option style="visibility :hidden" selected value="<?php echo $order_data['years_num']?>"><?php echo $order_data['years_num']?> Years</option>
                               <option value="1">1 Years</option>
                               <option value="2">2 Years</option>
                               <option value="3">3 Years</option>
@@ -125,11 +128,12 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                           <h3><?php echo strtoupper($user_data['name']);?></h3>
                           <h6><?php echo $user_data['email']?></h6>
                           <h6><?php echo $user_data['address']?></h6>
-                          <p>Time: <b><?php echo $order_data['years']?> years</b></p>
+                          <p>Time: <b><?php echo $order_data['years_num']?> years</b></p>
                           <p>Payment Method: <b><?php echo $order_data['pmn_method']?></b></p>
                           <p>Payment Number: <b><?php echo $order_data['pmn_number']?></b></p>
                           <p>Transection ID: <b><?php echo $order_data['trans_id']?></b></p>
                           <p>Amount: <b><?php echo $order_data['amount']?>৳</b></p>
+                          <p>Remainder: <b><?php $years = $order_data['years'];remainder($years);?></b></p>
                           <?php
                           if($order_data['status']=='Pending'){ ?>
                           <p>Status: <b style="color:red"><?php echo $order_data['status']?></b></p>

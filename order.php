@@ -7,6 +7,7 @@ if($landing_id<1){
 if(isset($_POST['submit'])){    
     $user_id = $user_info['id'];
     $years = $_POST['years'];
+    $years_num = $years;
     $years = ($years*365)*86400;
     $years = time()+$years;
     $pmn_method = $_POST['pmn_method'];
@@ -15,7 +16,7 @@ if(isset($_POST['submit'])){
     $amount = $_POST['amount'];
     $time = time();
 
-    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years', '$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");
+    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");
     if($insert){
         $msg = "Congratulations for Order!";
         header("location:welcome.php?msg=$msg");

@@ -6,41 +6,88 @@ if(!session_start()){
 }
 
 
-function time_elapsed_string($datetime, $full = false) {
-    /**int to string time by arif */
-    $datte=date("Y-m-d H:i:s",$datetime);
-    $now = new DateTime;
-     /**onl string time by arif */
-    $ago = new DateTime($datte);
-    $diff = $now->diff($ago);
-    /**devided time by arif */
-    $diff->w = floor($diff->d / 7);
-    $diff->d -= $diff->w * 7;
-    /**time array by arif */
-    $string = array(
-        'y' => 'y',
-        'm' => 'm',
-        'w' => 'w',
-        'd' => 'd',
-        'h' => 'h',
-        'i' => 'min',
-        's' => 'second',
-    );
-     /**loop for convert string by arif */
-    foreach ($string as $k => &$v) {
-        if ($diff->$k) {
-            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-        } else {
-            unset($string[$k]);
-        }
-    }
- /**check string time by arif */
-    if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
-}
+// function time_elapsed_string($datetime, $full = false) {
+//     /**int to string time by arif */
+//     $datte=date("Y-m-d H:i:s",$datetime);
+//     $now = new DateTime;
+//      /**onl string time by arif */
+//     $ago = new DateTime($datte);
+//     $diff = $now->diff($ago);
+//     /**devided time by arif */
+//     $diff->w = floor($diff->d / 7);
+//     $diff->d -= $diff->w * 7;
+//     /**time array by arif */
+//     $string = array(
+//         'y' => 'y',
+//         'm' => 'm',
+//         'w' => 'w',
+//         'd' => 'd',
+//         'h' => 'h',
+//         'i' => 'min',
+//         's' => 'second',
+//     );
+//      /**loop for convert string by arif */
+//     foreach ($string as $k => &$v) {
+//         if ($diff->$k) {
+//             $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+//         } else {
+//             unset($string[$k]);
+//         }
+//     }
+//  /**check string time by arif */
+//     if (!$full) $string = array_slice($string, 0, 1);
+//     return $string ? implode(', ', $string) . ' ago' : 'just now';
+// }
+
+
+// function convertSecToTime($sec){
+// 	$date1 = new DateTime("@0"); //starting seconds
+// 	$date2 = new DateTime("@$sec"); // ending seconds
+// 	$interval =  date_diff($date1, $date2); //the time difference
+// 	return $interval->format('%y Years, %m months, %d days, %h hours, %i minutes and %s seconds'); // convert into Years, Months, Days, Hours, Minutes and Seconds
+// }
+//OUTPUT: 7 Years, 9 months, 21 days, 19 hours, 14 minutes and 38 seconds
+
+
+
+ // ----------exipire Date count----------
+ function remainder($data){                      
+ $startTime = $data;
+ $endTime = time();
+ $timeDiff = abs($startTime-$endTime);
+ $numberDays = $timeDiff/86400;
+ $numberDays = intval($numberDays);
+
+ switch ($numberDays) {
+     case 365>$numberDays:
+       echo $numberDays." Days";
+       break;
+     case 365*2>$numberDays:
+       echo "2 Years";
+       break;
+     case 365*3>$numberDays:
+       echo "3 Years";
+       break;
+       break;
+     case 365*4>$numberDays:
+       echo "4 Years";
+       break;
+       break;
+     case 365*5>$numberDays:
+       echo "5 Years";
+       break;
+       break;
+     case 365*100>$numberDays:
+       echo "100 Years";
+       break;
+     default:
+       echo "None";
+   }
+ }
+
+
 
 // <!-- ===================php mailer=========== -->
-
  function sendVarifyCode($smtp_host, $smtp_username, $smtp_password, $smtp_port, $smtp_secure, $site_email, $sitename, $addres, $body, $subject)
     {
 
