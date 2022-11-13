@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     echo "Something is worng!";
     }
   }
-
+ 
 ?>
 <!-- Main Content -->
 <main class="main_content"> 
