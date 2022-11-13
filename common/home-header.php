@@ -7,6 +7,7 @@ if(isset($_SESSION['landing_id'])){
 }else{
   $landing_id = 0;
 }
+
 $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
 $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$landing_id"));
 ?>

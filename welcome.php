@@ -17,7 +17,3 @@
 <?php include("common/home-footer.php")?>
 
 
-
-
-01754159435 --->   5000tk            
-

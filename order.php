@@ -29,13 +29,7 @@ if(isset($_POST['submit'])){
     }
    }
 }
-if(isset($_POST['renew'])){
-
-    if(mysqli_query($conn,"SELECT * FROM renew WHERE user_id=$user_id")){
-        $msg = "You have Alrady Purchase Service";
-         header("location:order.php?msg=$msg");
-    }else{
-
+if(isset($_POST['renew'])){    
     $years = $_POST['years'];
     $years_num = $years;
     $years = ($years*365)*86400;
@@ -46,11 +40,10 @@ if(isset($_POST['renew'])){
     $amount = $_POST['amount'];
     $time = time();
 
-    $insert = mysqli_query($conn,"INSERT INTO renew(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `status`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount','Renew', '$time')");
+    $insert = mysqli_query($conn,"INSERT INTO renew(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `status`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount','Pending', '$time')");
     if($insert){
         $msg = "Congratulations for Renew Application!";
         header("location:welcome.php?msg=$msg");
-    }
     }
 }
 
@@ -83,7 +76,7 @@ if(isset($_POST['renew'])){
                                         <option value="3">3 Years</option>
                                         <option value="4">4 Years</option>
                                         <option value="5">5 Years</option>
-                                        <option value="10">Lifetime</option>
+                                        <option value="10">10 Years</option>
                                     </select>
                                 </div> 
                                 <div class="order-itmes">

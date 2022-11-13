@@ -75,7 +75,7 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $data['trans_id'];?></span>
                       </td>
                       <td>
-                        <p class="text-xs font-weight-bold mb-0"><?php echo $data['years'];?></p>
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $data['years_num'];?></p>
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $data['amount'];?></span>

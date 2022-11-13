@@ -7,7 +7,6 @@ if(isset($_GET['src'])){
   $src = $_GET['src'];
   $id = $_GET['id'];
 }
-$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT Orders.*, admin_info.* FROM orders INNER JOIN admin_info ON Orders.user_id=admin_info.id WHERE status='Pending'"));
 
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
@@ -28,15 +27,17 @@ if(isset($_POST['submit'])){
   $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',permision='$status', time='$time' WHERE id=$id");
   $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', years_num='$years_num', amount='$amount', status='$status', time='$time' WHERE user_id=$id");
 
+  $order_update = mysqli_query($conn,"UPDATE renew SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', years_num='$years_num', amount='$amount', status='$status', time='$time' WHERE user_id=$id");
+
   if($user_update && $order_update){
     $msg = "Successfully Updated!";
-    header("location:orders-edit.php?src=$src&&id=$id&&msg=$msg");
+    header("location:renew-orders.php?src=$src&&id=$id&&msg=$msg");
   }else{
     echo "something wrong!";
   }
 }
 $user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
-$order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$id"));
+$renew_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM renew WHERE user_id=$id AND status='Pending'"));
 ?>
   <div class="container-fluid py-4">
       <div class="row">
@@ -44,7 +45,7 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3"><?php echo $order_data['status']?> Orders</h6>
+                <h6 class="text-white text-capitalize ps-3"><?php echo $renew_data['status']?> Renew</h6>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -71,20 +72,20 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                           <div>
                               <div>
                                 <label for="pmn_method">Payment Method</label>
-                                <input name="pmn_method" type="text" value="<?php echo $order_data['pmn_method']?>">
+                                <input name="pmn_method" type="text" value="<?php echo $renew_data['pmn_method']?>">
                               </div>
                               <div>
                                 <label for="pmn_number">Payment Number</label>
-                                <input name="pmn_number" type="text" value="<?php echo $order_data['pmn_number']?>">
+                                <input name="pmn_number" type="text" value="<?php echo $renew_data['pmn_number']?>">
                               </div>
                               <div>
                                 <label for="trans_id">Transection ID</label>
-                                <input name="trans_id" type="text" value="<?php echo $order_data['trans_id']?>">
+                                <input name="trans_id" type="text" value="<?php echo $renew_data['trans_id']?>">
                               </div>
                           </div>
                           <div>
                             <select name="years">
-                              <option style="visibility :hidden" selected value="<?php echo $order_data['years_num']?>"><?php echo $order_data['years_num']?> Years</option>
+                              <option style="visibility :hidden" selected value="<?php echo $renew_data['years_num']?>"><?php echo $renew_data['years_num']?> Years</option>
                               <option value="1">1 Years</option>
                               <option value="2">2 Years</option>
                               <option value="3">3 Years</option>
@@ -95,21 +96,15 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
 
                           <div>
                               <div style="width:100%;margin:0;padding:0;">
-                                <input name="amount" type="text" value="<?php echo $order_data['amount']?>">
+                                <input name="amount" type="text" value="<?php echo $renew_data['amount']?>">
                               </div>
                           </div>
 
 
                           <div>
                             <select name="status">
-                              <?php
-                                if($src=='pending-orders'){ ?>
                               <option selected value="Pending">Pending</option>
                               <option value="Success">Success</option>
-                            <?php    }else{ ?>
-                              <option value="Pending">Pending</option>
-                              <option selected value="Success">Success</option>
-                              <?php }?>
                             </select>
                           </div>
                           <div>                            
@@ -123,17 +118,17 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                           <h3><?php echo strtoupper($user_data['name']);?></h3>
                           <h6><?php echo $user_data['email']?></h6>
                           <h6><?php echo $user_data['address']?></h6>
-                          <p>Time: <b><?php echo $order_data['years_num']?> years</b></p>
-                          <p>Payment Method: <b><?php echo $order_data['pmn_method']?></b></p>
-                          <p>Payment Number: <b><?php echo $order_data['pmn_number']?></b></p>
-                          <p>Transection ID: <b><?php echo $order_data['trans_id']?></b></p>
-                          <p>Amount: <b><?php echo $order_data['amount']?>৳</b></p>
-                          <p>Remainder: <b><?php $years = $order_data['years'];remainder($years);?></b></p>
+                          <p>Time: <b><?php echo $renew_data['years_num']?> years</b></p>
+                          <p>Payment Method: <b><?php echo $renew_data['pmn_method']?></b></p>
+                          <p>Payment Number: <b><?php echo $renew_data['pmn_number']?></b></p>
+                          <p>Transection ID: <b><?php echo $renew_data['trans_id']?></b></p>
+                          <p>Amount: <b><?php echo $renew_data['amount']?>৳</b></p>
+                          <p>Remainder: <b><?php $years = $renew_data['years'];remainder($years);?></b></p>
                           <?php
-                          if($order_data['status']=='Pending'){ ?>
-                          <p>Status: <b style="color:red"><?php echo $order_data['status']?></b></p>
+                          if($renew_data['status']=='Pending'){ ?>
+                          <p>Status: <b style="color:red"><?php echo $renew_data['status']?></b></p>
                         <?php }else{?>
-                          <p>Status: <b style="color:green"><?php echo $order_data['status']?></b></p>  
+                          <p>Status: <b style="color:green"><?php echo $renew_data['status']?></b></p>  
                           <?php }?>
                         </div>
                         <div class="view-img">
