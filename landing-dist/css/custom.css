@@ -110,3 +110,6 @@ select {
   font-size: 15px;
   display: block;
 }
+.product_summery{
+  display: flex;
+}

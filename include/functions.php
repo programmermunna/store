@@ -59,26 +59,26 @@ if(!session_start()){
  $numberDays = intval($numberDays);
 
  switch ($numberDays) {
-     case 365>$numberDays:
+     case 365*1>$numberDays:
        echo $numberDays." Days";
        break;
      case 365*2>$numberDays:
-       echo "2 Years";
+       echo "1 Years and more";
        break;
      case 365*3>$numberDays:
-       echo "3 Years";
+       echo "2 Years and more";
        break;
        break;
      case 365*4>$numberDays:
-       echo "4 Years";
+       echo "3 Years and more";
        break;
        break;
      case 365*5>$numberDays:
-       echo "5 Years";
+       echo "4 Years and more";
        break;
        break;
      case 365*100>$numberDays:
-       echo "100 Years";
+       echo "99 Years and more";
        break;
      default:
        echo "None";

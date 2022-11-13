@@ -66,8 +66,13 @@ if(isset($_POST['submit'])){
                             <span>Payment Number: <b><?php if(isset($order_info['pmn_number'])){echo $order_info['pmn_number'];}else{echo "Unavailable";}?></b></span>
                             <span>Transection ID: <b><?php if(isset($order_info['trans_id'])){echo $order_info['trans_id'];}else{echo "Unavailable";}?></b></span>
                             <span>Amount: <b><?php if(isset($order_info['amount'])){echo $order_info['amount']." ৳";}else{echo "Unavailable";}?></b></span>
-                            
                             <span>Remainder: <b><?php if(isset($order_info['years'])){$years = $order_info['years'];remainder($years);}else{echo "Unavailable";}?></b></span>
+                            <?php if(isset($order_info['status'])){
+                                if($order_info['status']=='Success'){?>
+                            <span>Status: <b style="color:green"><?php echo $order_info['status'];?></b></span>
+                            <?php }}else{?>
+                                <span>Status: <b style="color:red">Pending</b></span>
+                          <?php }?>
                             <span><b><a target="_blank" href="login.php">GO TO DASHBOARD</a></b></span>
                             </div>
                             <div>

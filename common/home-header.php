@@ -1,6 +1,5 @@
 <?php include("include/functions.php");?>
 <?php
-
 if(isset($_SESSION['landing_id'])){
    $landing_id = $_SESSION['landing_id'];  
 }elseif(isset($_COOKIE['landing_id'])){
@@ -9,9 +8,8 @@ if(isset($_SESSION['landing_id'])){
   $landing_id = 0;
 }
 $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
+$order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$landing_id"));
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>

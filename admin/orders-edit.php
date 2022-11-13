@@ -89,11 +89,6 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                               <option value="2">2 Years</option>
                               <option value="3">3 Years</option>
                               <option value="4">5 Years</option>
-                              <option value="4">6 Years</option>
-                              <option value="4">7 Years</option>
-                              <option value="4">8 Years</option>
-                              <option value="4">9 Years</option>
-                              <option value="4">10 Years</option>
                               <option value="100">Lifetime</option>
                             </select>
                           </div>
@@ -138,7 +133,7 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                           if($order_data['status']=='Pending'){ ?>
                           <p>Status: <b style="color:red"><?php echo $order_data['status']?></b></p>
                         <?php }else{?>
-                          <p>Status: <b style="color:green"><?php echo $order_data['status']?></b></p>
+                          <p>Status: <b style="color:green"><?php echo $order_data['status']?></b></p>  
                           <?php }?>
                         </div>
                         <div class="view-img">
