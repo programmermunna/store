@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
   if($row>0){
       $id = $row['id'];
       $_SESSION['super_admin_id'] = $id;
-      setcookie('super_admin_id', $id , time()+86000);
+      setcookie('super_admin_id', $id , time()+2592000);
       header('location:index.php');
   }else{
     $msg = "Your Email or Password is wrong!";

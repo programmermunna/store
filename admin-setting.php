@@ -29,7 +29,6 @@ if(isset($_POST['submit'])){
   $msg = "Somethings error! Please try again.";
 }
 }
-$admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
 ?>
     <!-- Main Content -->
     <main class="main_content">

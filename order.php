@@ -1,12 +1,14 @@
 <?php include("common/home-header.php")?>
 <?php 
-if($user_id<1){
+if($landing_id<1){
     $msg = "Please Login First";
     header("location:user-login.php?msg=$msg");
 }
 if(isset($_POST['submit'])){    
     $user_id = $user_info['id'];
     $years = $_POST['years'];
+    $years = ($years*365)*86400;
+    $years = time()+$years;
     $pmn_method = $_POST['pmn_method'];
     $pmn_number = $_POST['pmn_number'];
     $trans_id = $_POST['trans_id'];
@@ -16,7 +18,7 @@ if(isset($_POST['submit'])){
     $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years', '$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");
     if($insert){
         $msg = "Congratulations for Order!";
-        header("location:order.php?msg=$msg");
+        header("location:welcome.php?msg=$msg");
     }
 }
 

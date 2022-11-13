@@ -8,13 +8,16 @@
                             <p class="section-paragraph">Congratulations for purchese (Store Management Software).
                                 You can Chack your Email. We will send you admin details of this software soon. Thanks
                             </p>
-							<div class="cta-cta">
-								<a class="button button-primary" href="landing.php">Go To Home</a>
-							</div>
+							<div class="cta-cta"><a class="button button-primary" href="home.php">Go To Home</a></div>
 					    </div>
                     </div>
                 </div>
             </section>
         </main>
 <?php include("common/home-footer.php")?>
+
+
+
+
+01754159435 --->   5000tk            
 

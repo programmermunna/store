@@ -331,3 +331,17 @@ li.main-category.cat:hover .category-wrap {
   padding: 10px;
   overflow: auto;
 }
+.right-text h5 {
+  margin-top: 10px;
+}
+
+.right-text > a {
+  background: #fff;
+  color: #000;
+  display: block;
+  margin: 0 auto;
+  display: table;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}

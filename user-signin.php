@@ -1,6 +1,6 @@
 <?php include("common/home-header.php")?>
 <?php
-if($user_id>0){
+if($landing_id>0){
   header("location:home.php");
 }
 if(isset($_POST['submit'])){
@@ -20,9 +20,9 @@ if(isset($_POST['submit'])){
         $insert = mysqli_query($conn,"INSERT INTO admin_info(`name`, `email`, `pass`, `time`) VALUE('$name', '$email', '$pass', '$time')");
         $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE email='$email' AND pass='$pass'"));
         if($row>0){
-        $user_id = $row['id'];
-        $_SESSION['user_id'] = $user_id;
-        setcookie('user_id', $user_id , time()+86000);
+        $landing_id = $row['id'];
+        $_SESSION['landing_id'] = $landing_id;
+        setcookie('landing_id', $landing_id , time()+2592000);
         header('location:my-account.php');
         }
       }else{

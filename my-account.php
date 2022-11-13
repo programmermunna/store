@@ -1,6 +1,6 @@
 <?php include("common/home-header.php")?>
 <?php 
-if($user_id<1){
+if($landing_id<1){
     $msg = "Please Login First";
     header("location:user-login.php?msg=$msg");
 }
@@ -14,9 +14,9 @@ if(isset($_POST['submit'])){
     move_uploaded_file($file_tmp,"upload/$file_name");
 
     if(empty($file_name)){
-        $update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address' WHERE id=$user_id");
+        $update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address' WHERE id=$landing_id");
     }else{
-        $update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',file='$file_name' WHERE id=$user_id");
+        $update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',file='$file_name' WHERE id=$landing_id");
     }
 
     if($update){
@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
         header("location:my-account.php?msg=$msg");
     }
 }
-    $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
+    $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$landing_id"));
 
 ?>
         <main>
@@ -66,6 +66,23 @@ if(isset($_POST['submit'])){
                             <span>Payment Number: <b><?php if(isset($order_info['pmn_number'])){echo $order_info['pmn_number'];}else{echo "Unavailable";}?></b></span>
                             <span>Transection ID: <b><?php if(isset($order_info['trans_id'])){echo $order_info['trans_id'];}else{echo "Unavailable";}?></b></span>
                             <span>Amount: <b><?php if(isset($order_info['amount'])){echo $order_info['amount']." ৳";}else{echo "Unavailable";}?></b></span>
+
+
+
+                            <span>Left: <b><?php if(isset($order_info['years'])){
+                                
+                                
+                                // echo $order_info['time'];
+                                
+                                echo time_elapsed_string($order_info['years']);}else{echo "Unavailable";}
+                                
+                                
+                                ?></b></span>
+
+
+
+
+                            <span><b><a target="_blank" href="login.php">GO TO DASHBOARD</a></b></span>
                             </div>
                             <div>
 							<img src="upload/<?php echo $user_info['file']?>">

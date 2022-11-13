@@ -2,7 +2,7 @@
 <?php
 
 if(isset($_SESSION['admin_id'])){
-   $id = $_SESSION['admin_id'];  
+  $id = $_SESSION['admin_id'];  
 }elseif(isset($_COOKIE['admin_id'])){
   $id = $_COOKIE['admin_id'];
 }else{
@@ -17,6 +17,14 @@ if($id<1){
 
 $setting = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM setting"));
 $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
+$user_id = $admin_info['id'];
+$order = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
+$renew_time = $order['years'];
+$time = time();
+if($renew_time<$time){
+  header("location:home.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +92,7 @@ $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WH
               </a>
               <?php 
               if(isset($_POST['logout'])){
-              setcookie('admin_id', $id , time() - 86000);
+              setcookie('admin_id', $id , time() - 2592000);
               if(isset($_SESSION['admin_id'])){
                   unset($_SESSION['admin_id']);
                   session_destroy();

@@ -1,14 +1,14 @@
 <?php include("include/functions.php");?>
 <?php
 
-if(isset($_SESSION['user_id'])){
-   $user_id = $_SESSION['user_id'];  
-}elseif(isset($_COOKIE['user_id'])){
- $user_id = $_COOKIE['user_id'];
+if(isset($_SESSION['landing_id'])){
+   $landing_id = $_SESSION['landing_id'];  
+}elseif(isset($_COOKIE['landing_id'])){
+ $landing_id = $_COOKIE['landing_id'];
 }else{
-  $user_id = 0;
+  $landing_id = 0;
 }
-$user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$user_id"));
+$user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
 ?>
 
 
@@ -33,7 +33,7 @@ $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHE
                         <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="landing-dist/images/logo-light.svg" alt="Logo">LOGO</a></div>
                         <div class="nav">
                             <?php
-                            $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$user_id"));
+                            $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
                             if($check>0){ ?>
                             <ul>
                                 <li><a href="home.php">Home</a></li>
