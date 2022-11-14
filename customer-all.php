@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
     }
   }
  
-?>
+?> 
 <!-- Main Content -->
 <main class="main_content"> 
     <!-- Side Navbar Links -->
