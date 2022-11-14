@@ -80,11 +80,14 @@ if($renew_time<$time){
             <!-- Profile Options -->
             <div id="profile_options_overlay"></div>
             <div id="profile_options">
-              <p>
-                <span class="user_icon"></span>
-                <span>Profile</span>
-              </p>
-              <a>
+              <a href="profile.php">
+                <p>
+                  <span class="user_icon"></span>
+                  <span>Profile</span>
+                </p>
+              </a>
+
+              <a href="setting-index.php">
                 <p>
                   <span class="setting_icon"></span>
                   <span>Setting</span>

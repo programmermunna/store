@@ -60,7 +60,7 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $data['address'];?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['time']);?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['join_date']);?></span>
                       </td>
                       <td class="align-middle text-center">
                         <?php if($data['permision']=='Pending'){ ?>
@@ -108,7 +108,7 @@
                         <span class="text-secondary text-xs font-weight-bold"><?php echo $data['address'];?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['time']);?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['join_date']);?></span>
                       </td>
                       <td class="align-middle text-center">
                         <?php if($data['permision']=='Pending'){ ?>

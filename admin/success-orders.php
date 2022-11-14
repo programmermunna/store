@@ -141,7 +141,6 @@
                   </tbody>
                 </table>
 
-
               <!-- /* ----------paginations----------- */ -->
               <style>
                 .paginations>ul{box-shadow: 0 0 1px gray;margin: 0;padding: 10px;}

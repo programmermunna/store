@@ -48,9 +48,6 @@
           <div class="hidden hide_nav_items nav_items">            
           <a href="admin-setting.php">
               <button class="sub_link">Admin Setting</button>
-            </a>          
-          <a href="mail-setting.php">
-              <button class="sub_link">Mail Setting</button>
             </a>
             <a href="setting-index.php">
               <button class="sub_link">Website Setting</button>

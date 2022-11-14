@@ -13,16 +13,15 @@ if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
   $address = $_POST['address'];
-  $time = time();
 
   $file_name = $_FILES['file']['name'];
   $file_tmp = $_FILES['file']['tmp_name'];
   move_uploaded_file($file_tmp,"upload/$file_name");
 
   if(empty($file_name)){
-    $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address', time='$time' WHERE id=$id");
+    $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address' WHERE id=$id");
   }else{
-    $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',file='$file_name', time='$time' WHERE id=$id");
+    $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',file='$file_name' WHERE id=$id");
   }
 
 
