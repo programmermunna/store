@@ -29,7 +29,7 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM customer WHERE id='$
         <!-- Page Main Content -->
         <div class="add_page_main_content">
           <div class="add_page_title">
-            <span>Customer view</span>
+            <span>Customer view</span> 
             <a href="customer-edit.php?id=<?php echo $id;?>">
               <span class="edit_icon"></span>
             </a>
