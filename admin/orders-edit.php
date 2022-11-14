@@ -98,7 +98,7 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                                 <input name="amount" type="text" value="<?php echo $order_data['amount']?>">
                               </div>
                           </div>
-                          
+
                           <div>
                             <select name="status">
                               <?php
