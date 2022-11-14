@@ -27,10 +27,8 @@
                         <h4>Success Order</h4>
                     </div>
                     <header class="table_header">
-                        <div class="table_header_left">
-                           
+                        <div class="table_header_left">                           
                         </div>
-
                         <form action="" method="POST">
                             <div class="table_header_right">
                                 <input type="search" name="src_text" placeholder="Search Only Order No" />
@@ -66,8 +64,7 @@
                                    $customer =  $row['customer_id'];
                                    $order_no =  $row['order_no'];
                                    $cusomer_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM customer WHERE id='$customer'"));
-                                   $total_total = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(total) AS totalsum FROM tmp_product WHERE order_no='$order_no'"));
-                                   
+                                   $total_total = mysqli_fetch_assoc(mysqli_query($conn,"SELECT SUM(total) AS totalsum FROM tmp_product WHERE order_no='$order_no'"));                                   
                                  ?>
                                     <tr>
                                         <td class="p-3 border whitespace-nowrap"><div class="text-center"><?php echo $i?></div></td>
@@ -86,8 +83,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                <?php }}else{
-                                    // ------------                                
+                                <?php }}else{                               
                                 $showRecordPerPage = 8;
                                 if(isset($_GET['page']) && !empty($_GET['page'])){
                                     $currentPage = $_GET['page'];

@@ -98,12 +98,11 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                                 <input name="amount" type="text" value="<?php echo $order_data['amount']?>">
                               </div>
                           </div>
-
-
+                          
                           <div>
                             <select name="status">
                               <?php
-                                if($src=='pending-orders'){ ?>
+                                if($order_data['status']=='Pending'){ ?>
                               <option selected value="Pending">Pending</option>
                               <option value="Success">Success</option>
                             <?php    }else{ ?>
@@ -112,6 +111,7 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                               <?php }?>
                             </select>
                           </div>
+
                           <div>                            
                             <input name="submit" class="submit_btn" type="submit" value="Save">
                           </div>

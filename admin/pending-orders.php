@@ -11,8 +11,8 @@
                 <h6 class="text-white text-capitalize ps-3">Pending Orders </h6>
                 <div class="top_search">
                   <form action="" method="POST">
-                    <input type="text">
-                    <button type="submit">Search</button>
+                    <input name="src" type="text">
+                    <button name="search" type="submit">Search</button>
                   </form>
                 </div>
               </div>
@@ -36,7 +36,54 @@
                   <tbody>
 
                   <?php 
-
+                  if(isset($_POST['search'])){
+                    $src_text = trim($_POST['src']);
+                    $sql = "SELECT orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE (name='$src_text' OR email='$src_text' OR address='$src_text' OR pmn_method='$src_text' OR pmn_number='$src_text' OR trans_id='$src_text' OR years_num='$src_text' OR amount='$src_text') AND orders.status='Pending'";
+                    $search_query = mysqli_query($conn,$sql);
+                  }
+                  if(isset($search_query)){
+                  while($data = mysqli_fetch_assoc($search_query)){; 
+                  ?>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="../upload/<?php echo $data['file'];?>" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                          </div>
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm"><?php echo $data['name'];?></h6>
+                            <p class="text-xs text-secondary mb-0"><?php echo $data['email'];?></p>
+                            <p class="text-xs text-secondary mb-0"><?php echo $data['address'];?></p>
+                          </div>
+                        </div>
+                      </td>                      
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['pmn_method'];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['pmn_number'];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['trans_id'];?></span>
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0"><?php echo $data['years_num'];?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['amount'];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['time']);?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-xs font-weight-bold badge badge-sm bg-gradient-danger"><?php echo $data['status'];?></span>
+                      </td>
+                      <td style="text-align:center">
+                        <a href="orders-edit.php?src=pending-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
+                        <a href="delete.php?src=pending-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
+                      </td>
+                    </tr>
+                  <?php }}else{
                 if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                   $page_no = $_GET['page_no'];} else {$page_no = 1;}
                   $total_records_per_page = 6;
@@ -186,7 +233,7 @@
                   </div>
                 </div>
                 <!-- /* ----------paginations----------- */ -->
-
+                <?php }?>
               </div>
             </div>
           </div>

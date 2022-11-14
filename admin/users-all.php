@@ -11,8 +11,8 @@
                 <h6 class="text-white text-capitalize ps-3">Users All</h6>
                 <div class="top_search">
                   <form action="" method="POST">
-                    <input type="text">
-                    <button type="submit">Search</button>
+                    <input name="src" type="text">
+                    <button name="search" type="submit">Search</button>
                   </form>
                 </div>
               </div>
@@ -34,7 +34,47 @@
                   <tbody>
 
                   <?php 
-
+                  if(isset($_POST['search'])){
+                    $src_text = trim($_POST['src']);
+                    $sql = "SELECT * FROM admin_info WHERE name='$src_text' OR email='$src_text' OR address='$src_text' OR permision='$src_text'";
+                    $search_query = mysqli_query($conn,$sql);
+                  }
+                  if(isset($search_query)){
+                  while($data = mysqli_fetch_assoc($search_query)){; 
+                  ?>
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div>
+                            <img src="../upload/<?php echo $data['file'];?>" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                          </div>
+                        </div>
+                      </td>                      
+                      <td class="align-middle text-center text-sm">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['name'];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['email'];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo $data['address'];?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?php echo date("d-m-y",$data['time']);?></span>
+                      </td>
+                      <td class="align-middle text-center">
+                        <?php if($data['permision']=='Pending'){ ?>
+                          <span class="text-xs font-weight-bold badge badge-sm bg-gradient-danger"><?php echo $data['permision'];?></span>
+                     <?php }else{?>
+                        <span class="text-xs font-weight-bold badge badge-sm bg-gradient-success"><?php echo $data['permision'];?></span>
+                        <?php }?>
+                      </td>
+                      <td style="text-align:center">
+                        <a href="users-edit.php?src=users-all&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
+                        <a href="delete.php?src=users&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
+                      </td>
+                    </tr>
+                  <?php }}else{
                 if (isset($_GET['page_no']) && $_GET['page_no']!="") {
                   $page_no = $_GET['page_no'];} else {$page_no = 1;}
                   $total_records_per_page = 6;
@@ -177,7 +217,7 @@
                   </div>
                 </div>
                 <!-- /* ----------paginations----------- */ -->
-
+                <?php }?>
               </div>
             </div>
           </div>
