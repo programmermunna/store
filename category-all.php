@@ -28,7 +28,7 @@ if(isset($_POST['update'])){
   }else{
       echo "not";
   }
-} 
+}  
 
 
 ?>
