@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
   $msg = "Something is worng!";
   }
 }
-?>  
+?>   
     <!-- Main Content -->
     <main class="main_content">
 <!-- Side Navbar Links -->
