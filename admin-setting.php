@@ -7,17 +7,17 @@
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
-  $pass = md5($_POST['pass']);
-  $new_pass = md5($_POST['new_pass']);
-  $confirm_pass = md5($_POST['confirm_pass']);
 
   $file_name = $_FILES['file']['name'];
   $file_tmp = $_FILES['file']['tmp_name'];
   move_uploaded_file($file_tmp,"upload/$file_name");
 
-
-  if($new_pass===$confirm_pass){
-  $sql = "UPDATE admin_info SET name='$name',email='$email',pass='$new_pass',file='$file_name' WHERE id=$id"; 
+  if(empty($file_name)){
+  $sql = "UPDATE admin_info SET name='$name',email='$email' WHERE id=$id";
+  }else{
+  $sql = "UPDATE admin_info SET name='$name',email='$email',file='$file_name' WHERE id=$id"; 
+  }
+  
   $query = mysqli_query($conn,$sql);
   if($query){
     $msg = "Successfully Updated";
@@ -27,7 +27,6 @@ if(isset($_POST['submit'])){
   }
 }else{
   $msg = "Somethings error! Please try again.";
-}
 }
 ?>
     <!-- Main Content -->
@@ -59,18 +58,6 @@ if(isset($_POST['submit'])){
           <div>
               <label>Email</label>
               <input type="text" name="email" class="input" value="<?php echo $admin_info['email']; ?>" />
-            </div>
-            <div>
-              <label>Old Password</label>
-              <input type="password" name="pass" class="input" />
-            </div>
-            <div>
-              <label>New Password</label>
-              <input type="password" name="new_pass" class="input" />
-            </div>
-            <div>
-              <label>Confirm Password</label>
-              <input type="password" name="confirm_pass" class="input"/>
             </div>
             <div>
               <label>Image</label>

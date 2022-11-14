@@ -345,3 +345,19 @@ li.main-category.cat:hover .category-wrap {
   border-radius: 5px;
   margin-top: 20px;
 }
+.add_remove_div{
+  background: #fff;
+  padding: 20px;
+}
+.add_remove_img{
+  margin-top: 30px; 
+  padding:5px 10px;
+  background: #338FFF;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  color: #fff;
+}
+.add_remove_img:hover{
+  background: #2268be;
+}

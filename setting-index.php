@@ -15,11 +15,7 @@ if(isset($_POST['submit'])){
   $website = $_POST['website'];
   $time = time();
 
-  $logo_name = $_FILES['logo']['name'];
-  $logo_tmp = $_FILES['logo']['tmp_name'];
-  move_uploaded_file($file_tmp,"upload/$file_name");
-
-  $sql = "UPDATE setting SET name='$name',email='$email',phone='$phone',address='$address',city='$city',country='$country',website='$website',logo='$logo_name',time='$time' WHERE id=1";
+  $sql = "UPDATE setting SET name='$name',email='$email',phone='$phone',address='$address',city='$city',country='$country',website='$website',time='$time' WHERE id=1";
   $query = mysqli_query($conn,$sql);
   if($query){
    $msg = "Successfully Updated Setting!";
@@ -56,28 +52,9 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM setting WHERE id=1")
         <div class="add_page_main_content">
           <h1 class="add_page_title">UPDATE COMPANY INFORMATIONS</h1>
           <form id="setting_form" action="" method="POST" enctype="multipart/form-data">
-          <?php if(isset($msg)){ ?>
-              <div class="alert_success"><?php echo $msg; ?></div>
-             <?php }?>
-            <div>
-              <label style="text-align:center">Requirement Size: 200*60</label>
-            <?php if(!empty($row['logo'])){ ?>
-              <img src="upload/<?php echo $row['logo']?>" alt="">
-            <?php } ?>
-              <input
-                type="file" 
-                name="logo"
-                class="input"
-              />
-            </div>
             <div>
               <label>Company Name</label>
-              <input
-                type="text" 
-                name="name"
-                value="<?php echo $row['name']?>"
-                class="input"
-              />
+              <input type="text" name="name"value="<?php echo $row['name']?>"class="input"/>
             </div>
             <div>
               <label>Email</label>
@@ -104,10 +81,41 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM setting WHERE id=1")
             <div>
               <label>website</label>
               <input type="text" name="website" value="<?php echo $row['website']?>" class="input" />
-            </div>
-            
+            </div>            
             <input class="btn submit_btn" name="submit" type="submit" value="Update" />
           </form>
+          
+          <?php 
+          if(isset($_POST['add'])){
+            $file_name = $_FILES['file']['name'];
+            $file_tmp = $_FILES['file']['tmp_name'];
+            move_uploaded_file($file_tmp,"upload/$file_name");
+            $update = mysqli_query($conn,"UPDATE setting SET logo='$file_name'");
+            if($update){
+              $msg = "Logo Update Successfully";
+              header("location:setting-index.php?msg=$msg");
+            }
+          }elseif(isset($_POST['remove'])){
+            $update = mysqli_query($conn,"UPDATE setting SET logo=''");
+            if($update){
+              $msg = "Logo Removed Successfully";
+              header("location:setting-index.php?msg=$msg");
+            }
+          }          
+          ?>
+          <div class="add_remove_div">
+            <form action="" method="POST" enctype="multipart/form-data">
+            <img src="upload/<?php echo $row['logo']?>">
+            <p>Requered Size: 200*150</p>
+            <input style="background:#338fff;" class="add_remove_img" type="file" name="file" class="input">
+            <input class="add_remove_img" name="add" type="submit" value="Add" />
+            <input class="add_remove_img" name="remove" type="submit" value="Remove" />
+          </form>
+          </div>
+
+
+
+
         </div>
       </section>
       <!-- Page Content -->
