@@ -631,3 +631,4 @@ for (let i = 0; i < all_selected_quantity_input.length; i++) {
 <!-- footer -->
 <?php include("common/footer.php"); ?>
 <!-- footer -->
+<?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>

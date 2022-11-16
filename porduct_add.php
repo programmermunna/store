@@ -1,4 +1,4 @@
-<?php include("include/functions.php");
+<?php include("common/header.php");
 
 if(isset($_GET['pr_id'])){
       $order = $_GET['order'];
@@ -14,8 +14,7 @@ if(isset($_GET['pr_id'])){
   $sell_price = $product['sell_price'];
 
   if(!$tmp_product['product_code']==$pr_id && !$order_no['order_no']==$order){
-
-    $product_add = mysqli_query($conn,"INSERT INTO tmp_product(brand,order_no,product_code,product_name,sell_price,quantity,vat) VALUE('$brand','$order','$pr_id','$pr_name','$sell_price',1,'$vat')");
+    $product_add = mysqli_query($conn,"INSERT INTO tmp_product(admin_id,brand,order_no,product_code,product_name,sell_price,quantity,vat) VALUE($id,'$brand','$order','$pr_id','$pr_name','$sell_price',1,'$vat')");
     if($product_add){
       $tmp_product = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tmp_product WHERE order_no = '$order' AND product_code = $pr_id"));
 

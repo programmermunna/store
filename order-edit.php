@@ -96,3 +96,4 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product WHERE id='$i
 <!-- Side Navbar Links -->
 <?php include("common/footer.php");?>
 <!-- Side Navbar Links -->
+<?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>
