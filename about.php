@@ -22,4 +22,4 @@
                 </div>
             </section>
         </main>
-<?php include("common/home-footer.php")?>
+<?php include("common/home-footer.php")?> 
