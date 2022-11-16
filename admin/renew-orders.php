@@ -79,8 +79,8 @@
                       <span class="text-xs font-weight-bold badge badge-sm bg-gradient-success"><?php echo $data['status'];?></span>
                     </td>
                     <td style="text-align:center">
-                      <a href="renew-edit.php?src=success-renew&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
-                      <a href="delete.php?src=success-renew&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
+                    <a href="renew-edit.php?src=renew-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
+                      <a href="delete.php?src=renew-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
                     </td>
                   </tr>
                 <?php }}else{
@@ -133,8 +133,8 @@
                         <span class="text-xs font-weight-bold badge badge-sm bg-gradient-success"><?php echo $data['status'];?></span>
                       </td>
                       <td style="text-align:center">
-                        <a href="renew-edit.php?src=success-renew&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
-                        <a href="delete.php?src=success-renew&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
+                        <a href="renew-edit.php?src=renew-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">View</a>
+                        <a href="delete.php?src=renew-orders&&id=<?php echo $data['id'];?>" class="badge badge-sm bg-gradient-success">Delete</a>
                       </td>
                     </tr>
                     <?php }?>
@@ -242,3 +242,4 @@
   </main>  
   <?php include("common/setting.php")?>
   <?php include("common/footer.php")?>
+  <?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>

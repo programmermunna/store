@@ -10,6 +10,10 @@ if(isset($_SESSION['landing_id'])){
 
 $user_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
 $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$landing_id"));
+$setting = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting"));
+$product = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product_setting"));
+$pages = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pages"));
+$mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE id=1"));
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -29,7 +33,7 @@ $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
             <div class="container">
                 <div class="site-header-inner">
                     <div class="brand header-brand">
-                        <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="landing-dist/images/logo-light.svg" alt="Logo">LOGO</a></div>
+                        <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="../upload/logo.png" alt="Logo"><?php echo $setting['name'];?></a></div>
                         <div class="nav">
                             <?php
                             $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
@@ -37,16 +41,26 @@ $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
                             <ul>
                                 <li><a href="home.php">Home</a></li>
                                 <li><a href="about.php">About</a></li>
+                                <li><a href="terms.php">Terms</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                                 <li><a href="my-account.php">My Account</a></li>
                                 <li><a href="user-logout.php">Logout</a></li>
-                                <li><a class="header-last-itme" href="order.php">Buy now</a></li>
+                                <?php 
+                                $renew_check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$landing_id AND status='Success'"));
+                                if($renew_check){ ?>
+                                <li><a class="header-last-itme" href="order.php">Renew</a></li>
+                                <?php   }else{?>
+                                    <li><a class="header-last-itme" href="order.php">Buy now</a></li>
+                                <?php }?>
                             </ul>
                           <?php  }else{?>
                             <ul>
                                 <li><a href="home.php">Home</a></li>
                                 <li><a href="about.php">About</a></li>
+                                <li><a href="terms.php">Terms</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                                 <li><a href="user-login.php">Login</a></li>
-                                <li><a href="user-signin.php">Sign In</a></li>
+                                <li><a href="user-signin.php">Sign In</a></li>                                
                                 <li><a class="header-last-itme" href="order.php">Buy now</a></li>
                             </ul>
                             <?php }?>

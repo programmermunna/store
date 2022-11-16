@@ -55,6 +55,10 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
                                 <input name="smtp_user_pass" type="text" value="<?php echo $mail['smtp_user_pass']?>">
                               </div>
                               <div>
+                                <label for="address">SMTP Security</label>
+                                <input name="smtp_security" type="text" value="<?php echo $mail['smtp_security']?>">
+                              </div>
+                              <div>
                                 <label for="address">SITE EMAIL</label>
                                 <input name="site_email" type="text" value="<?php echo $mail['site_email']?>">
                               </div>
@@ -86,3 +90,4 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
   </main>  
   <?php include("common/setting.php")?>
   <?php include("common/footer.php")?>
+  <?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>

@@ -13,11 +13,11 @@ if(isset($_POST['submit'])){
   $youtube = $_POST['youtube'];
   $footer_text = $_POST['footer_text'];
 
-  $sql = "UPDATE website_setting SET name='$name',email='$email',address='$address',facebook='$facebook',linkedin='$linkedin',mail='$mail',youtube='$youtube',footer_text='$footer_text' WHERE id='1'";
+  $sql = "UPDATE product_setting SET name='$name',email='$email',address='$address',facebook='$facebook',linkedin='$linkedin',mail='$mail',youtube='$youtube',footer_text='$footer_text' WHERE id='1'";
   $query = mysqli_query($conn,$sql);
   if($query){
     $msg = "Successfully Updated";
-    header("location:website-setting.php?msg=$msg");
+    header("location:product-setting.php?msg=$msg");
   }
 }
 $product = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product_setting WHERE id=1"));
@@ -125,9 +125,10 @@ $product = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product_setting 
 });
   </script>
 
-
   <?php include("common/setting.php")?>
   <?php include("common/footer.php")?>
+  <?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>
+
 
 
   

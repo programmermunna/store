@@ -7,7 +7,6 @@ if(isset($_GET['src'])){
   $src = $_GET['src'];
   $id = $_GET['id'];
 }
-$data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT Orders.*, admin_info.* FROM orders INNER JOIN admin_info ON Orders.user_id=admin_info.id WHERE status='Pending'"));
 
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
@@ -25,14 +24,12 @@ if(isset($_POST['submit'])){
   $status = $_POST['status'];
   $time = time();
 
-  $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',permision='$status', time='$time' WHERE id=$id");
-  $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', years_num='$years_num', amount='$amount', status='$status', time='$time' WHERE user_id=$id");
+  $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',permision='$status' WHERE id=$id");
+  $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', years_num='$years_num', amount='$amount', status='$status' WHERE user_id=$id");
 
   if($user_update && $order_update){
     $msg = "Successfully Updated!";
     header("location:orders-edit.php?src=$src&&id=$id&&msg=$msg");
-  }else{
-    echo "something wrong!";
   }
 }
 $user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
@@ -151,3 +148,4 @@ $order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE 
   </main>  
   <?php include("common/setting.php")?>
   <?php include("common/footer.php")?>
+  <?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>

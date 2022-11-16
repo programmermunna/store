@@ -5,9 +5,13 @@ if($landing_id<1){
     header("location:user-login.php?msg=$msg");
 }
 $user_id = $user_info['id'];
+$orders = mysqli_fetch_assoc(mysqli_query($conn,"SELECT orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE admin_info.id=$user_id"));
+$website = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting"));
+include("email_template.php");
+
 
 if(isset($_POST['submit'])){
-     $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
+    $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
     if($check>0){
         $msg = "You have Alrady Purchase Service";
          header("location:order.php?msg=$msg");
@@ -22,13 +26,29 @@ if(isset($_POST['submit'])){
     $amount = $_POST['amount'];
     $time = time();
 
-    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");
-    if($insert){
-        $msg = "Congratulations for Order!";
-        header("location:welcome.php?msg=$msg");
+    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");   
+
+    $sub = "Congratulations for Purchase Store Software";
+    $email = $orders['email'];
+    
+    $smtp_host = $mail['smtp_host'];
+    $smtp_username = $mail['smtp_user_name'];
+    $smtp_password = $mail['smtp_user_pass'];
+    $smtp_port = $mail['smtp_port'];
+    $smtp_secure = $mail['smtp_security'];
+    $site_email = $mail['site_email'];
+    $site_name = $mail['site_replay_email'];
+    
+    $address = $email;
+    $subject = $sub;
+    $body =  $email_template;
+    $send = sendVarifyCode($smtp_host,$smtp_username,$smtp_password,$smtp_port,$smtp_secure,$site_email,$site_name,$address,$body,$subject);
+    
+   $msg = 'Your Mail was sent successfully.';
+   header("location:order.php?msg=$msg");
     }
-   }
 }
+
 if(isset($_POST['renew'])){    
     $years = $_POST['years'];
     $years_num = $years;
@@ -41,10 +61,26 @@ if(isset($_POST['renew'])){
     $time = time();
 
     $insert = mysqli_query($conn,"INSERT INTO renew(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `status`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount','Pending', '$time')");
-    if($insert){
-        $msg = "Congratulations for Renew Application!";
-        header("location:welcome.php?msg=$msg");
-    }
+    
+    $sub = "Congratulations for Renew Store Software";
+    $email = $orders['email'];
+    
+    $smtp_host = $mail['smtp_host'];
+    $smtp_username = $mail['smtp_user_name'];
+    $smtp_password = $mail['smtp_user_pass'];
+    $smtp_port = $mail['smtp_port'];
+    $smtp_secure = $mail['smtp_security'];
+    $site_email = $mail['site_email'];
+    $site_name = $mail['site_replay_email'];
+    
+    $address = $email;
+    $subject = $sub;
+    $body =  $email_template;
+    $send = sendVarifyCode($smtp_host,$smtp_username,$smtp_password,$smtp_port,$smtp_secure,$site_email,$site_name,$address,$body,$subject);
+    
+   $msg = 'Your Mail was sent successfully.';
+   header("location:order.php?msg=$msg");
+    
 }
 
 ?>
@@ -112,10 +148,10 @@ if(isset($_POST['renew'])){
 						</div>
 
 						<div class="hero-media">
-							<img class="template_img" src="upload/store.jpg">
-                            <h3 style="margin:10px;text-align:center;">1000$/Year</h3>
-                            <h3>Store Management System (POS)</h3>
-                            <p style="font-size:15px;font-style:italic">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A ut, velit eos quibusdam deleniti consectetur quis, illum excepturi similique deserunt officia dignissimos obcaecati? Ratione alias, odit voluptatem tempora aut natus illum veniam optio minus facilis dolor sit impedit sapiente iusto aspernatur nam temporibus accusantium nihil, saepe dolore laborum deleniti voluptas. Esse sunt non consequuntur consequatur quae! Cumque, consectetur. Totam delectus tempore eveniet labore nihil necessitatibus corporis possimus sit ut quidem deserunt quis mollitia debitis, dolores distinctio quibusdam commodi atque nemo maxime. Porro consectetur voluptates aliquam modi. Cum beatae odit quae recusandae vel, odio, cumque, perspiciatis harum animi dolores placeat laboriosam.</p>
+							<img class="template_img" src="upload/<?php echo $product['file']?>">
+                            <h3 style="margin:10px;text-align:center;"><?php echo $product['price']?>৳/Year</h3>
+                            <h3><?php echo $product['title']?></h3>
+                            <p style="font-size:15px;font-style:italic"><?php echo $product['summery']?></p>
 
 						</div>
                     </div>
@@ -132,3 +168,5 @@ if(isset($_POST['renew'])){
         </script>
 
 <?php include("common/home-footer.php")?>
+<?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>
+

@@ -97,7 +97,7 @@
                   $total_no_of_pages = ceil($total_records / $total_records_per_page);
                   $second_last = $total_no_of_pages - 1;
 
-                  $result = mysqli_query($conn,"SELECT Orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE status='Pending' LIMIT $offset, $total_records_per_page");
+                  $result = mysqli_query($conn,"SELECT orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE status='Pending' LIMIT $offset, $total_records_per_page");
                   while($data= mysqli_fetch_assoc($result)){?>
                     <tr>
                       <td>
@@ -243,3 +243,4 @@
   </main>  
   <?php include("common/setting.php")?>
   <?php include("common/footer.php")?>
+  <?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>

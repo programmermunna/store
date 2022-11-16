@@ -7,9 +7,10 @@ a {
 .site-header,
 .body-wrap {
   box-shadow: 1px 1px 5px #5763d8;
+  padding: 0;
 }
 .logo a {
-  font-size: 50px;
+  font-size: 30px;
 }
 .header-brand {
   width: 100%;
@@ -47,7 +48,6 @@ a {
   box-shadow: 0px 0px 4px gray;
   border-radius: 5px;
 }
-
 .order {
   padding: 20px;
   border-radius: 5px;

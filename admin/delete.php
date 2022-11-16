@@ -16,6 +16,12 @@ switch ($src) {
             header("location:$src.php?msg=$msg");
         }
       break;
+    case "renew-orders":
+        if(mysqli_query($conn,"DELETE FROM renew WHERE user_id=$id")){
+            $msg = "Successfully Deleted!";
+            header("location:$src.php?msg=$msg");
+        }
+      break;
     case "users":
         if(mysqli_query($conn,"DELETE FROM admin_info WHERE id=$id")){
             $msg = "Successfully Deleted!";

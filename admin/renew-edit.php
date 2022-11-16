@@ -146,3 +146,4 @@ $renew_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM renew WHERE u
   </main>  
   <?php include("common/setting.php")?>
   <?php include("common/footer.php")?>
+  <?php if (isset($_GET['msg'])) { ?><div id="munna" data-text="<?php echo $_GET['msg']; ?>"></div><?php } ?>
