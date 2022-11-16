@@ -15,7 +15,8 @@ if($id<1){
   header('location:login.php');
 }
 
-$setting = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM setting"));
+$setting = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM setting WHERE id=1"));
+$website = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting WHERE id=1"));
 $admin_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
 $user_id = $admin_info['id'];
 $order = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
@@ -32,6 +33,8 @@ if($renew_time<$time){
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="upload/<?php echo $website['favicon']?>">
+    <title><?php echo $website['name']?></title>
     <link href="dist/css/category.css" rel="stylesheet" />
     <link href="dist/css/styles.css" rel="stylesheet" />
     <link href="dist/css/custom.css" rel="stylesheet" />

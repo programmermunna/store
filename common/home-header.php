@@ -21,7 +21,8 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Store Management</title>
+    <title><?php echo $setting['name']?></title>
+  <link rel="icon" type="image/png" href="upload/<?php echo $setting['favicon']?>">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
 
@@ -35,8 +36,11 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
             <div class="container">
                 <div class="site-header-inner">
                     <div class="brand header-brand">
-                        <!-- <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="../upload/logo.png" alt="Logo"></a></div> -->
-                        <div class="logo"><a href="home.php"><?php echo $setting['name'];?></div>
+                        <?php if(!empty($setting['logo'])){?>
+                        <div style="margin:30px;width:200px;height:50px"><img src="upload/<?php echo $setting['logo'];?>"></div>
+                        <?php }else{?>
+                            <div style="margin:30px;font-size:22px"><a href="home.php"><?php echo $setting['name'];?></div>
+                            <?php }?>
                         <div class="nav">
                             <?php
                             $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));

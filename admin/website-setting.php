@@ -83,7 +83,7 @@ $website = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting 
                       if(isset($_POST['add'])){
                         $file_name = $_FILES['file']['name'];
                         $file_tmp = $_FILES['file']['tmp_name'];
-                        move_uploaded_file($file_tmp,"upload/$file_name");
+                        move_uploaded_file($file_tmp,"../upload/$file_name");
                         $update = mysqli_query($conn,"UPDATE website_setting SET logo='$file_name'");
                         if($update){
                           $msg = "Logo Update Successfully";
@@ -106,8 +106,38 @@ $website = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting 
                           <input type="submit" name="remove" value="remove">
                         </div>
                       </form>
-                      </div>
+                <hr>
+                <hr>
+                      <?php 
+                      if(isset($_POST['add_fav'])){
+                        $file_name = $_FILES['file']['name'];
+                        $file_tmp = $_FILES['file']['tmp_name'];
+                        move_uploaded_file($file_tmp,"../upload/$file_name");
+                        $update = mysqli_query($conn,"UPDATE website_setting SET favicon='$file_name'");
+                        if($update){
+                          $msg = "Logo Update Successfully";
+                          header("location:website-setting.php?msg=$msg");
+                        }
+                      }elseif(isset($_POST['remove_fav'])){
+                        $update = mysqli_query($conn,"UPDATE website_setting SET favicon=''");
+                        if($update){
+                          $msg = "Logo Removed Successfully";
+                          header("location:website-setting.php?msg=$msg");
+                        }
+                      }          
+                      ?>
+                      <div style="display:block;text-align:center;margin:30px auto;">
+                      <form action="" method="POST" enctype="multipart/form-data">
+                          <img style="padding-bottom:30px;max-width:100%" src="../upload/<?php echo $website['favicon']?>" alt="Logo">
+                          <br>
+                          <input class="input_file" type="file" name="file">
+                          <input type="submit" name="add_fav" value="Add">
+                          <input type="submit" name="remove_fav" value="remove">
+                        </div>
+                      </form>
 
+
+                      </div>
                       <div class="view">
                         <div class="view-content" style="margin-left:50px;width:100%">
                           <div class="view-img">
