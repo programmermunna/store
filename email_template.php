@@ -7,7 +7,7 @@
         <th style="text-align:right;font-weight:400;padding:20px">Date: <?php echo date("d-m-Y");?></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody> 
       <tr>
         <td style="height:35px;"></td>
       </tr>
