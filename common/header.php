@@ -56,13 +56,8 @@ if($renew_time<$time){
           </div>
 
           <button onclick="toggle_nav()" class="menu_icon"></button>
-
-          <!-- Header Search Form -->
-          <div class="header_search">
-            <button id="search_toggle" class="search_icon"></button>
-            <form id="header_search_form">
-            </form>
-          </div>
+            <hidden id="search_toggle"></hidden>
+          
         </div>
 
         <div class="header_right">
@@ -80,10 +75,10 @@ if($renew_time<$time){
             <!-- Profile Options -->
             <div id="profile_options_overlay"></div>
             <div id="profile_options">
-              <a href="profile.php">
+              <a href="admin-setting.php">
                 <p>
                   <span class="user_icon"></span>
-                  <span>Profile</span>
+                  <span>Admin</span>
                 </p>
               </a>
 

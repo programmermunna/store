@@ -41,6 +41,7 @@
         </footer>
     </div>
 
+    <script src="landing-dist/js/slicknav.js"></script>
     <script src="landing-dist/js/main.min.js"></script>
 </body>
 </html>

@@ -113,3 +113,41 @@ select {
 .product_summery{
   display: flex;
 }
+
+.slicknav_menu{
+  display:none;
+}
+
+
+@media only screen and (max-width: 768px) {
+  #menu{
+		display:none;
+	}
+	
+	.slicknav_menu{
+		display:block;
+	}
+  
+
+  .logo {
+    padding: 20px 0;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+  .logo a {
+    font-size: 25px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+.site-footer-inner{
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-top: 30px !important;
+}
+.my_account {
+  display: block;
+}
+
+}

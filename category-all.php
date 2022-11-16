@@ -53,7 +53,7 @@ if(isset($_POST['update'])){
         <section class="page_main_content">
             <div style="background: #fff;border-radius: 5px;box-shadow: 0px 5px 10px #dfdfdf;" class="main_content_container">            
 
-                <div class="p-6">
+                <div class="p-6" style="overflow:auto">
                   <div class="pb-4 flex justify-between">
                     <p style="visibility: hidden;"></p>
                     <?php if(isset($msg)){ ?><div class="alert_success"><?php echo $msg; ?></div> <?php }?>

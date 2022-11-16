@@ -111,8 +111,7 @@ if(isset($_POST['customer_add'])){
         </div>
 
         <!-- Page Main Content -->
-        <h4 class="p-3 rounded bg-gray-50 shadow text-base font-semibold tracking-wider"
-            style="display: flex; justify-content:space-between;align-items:center;">
+        <h4 class="p-3 rounded bg-gray-50 shadow text-base font-semibold tracking-wider page_heading">
             <span>POS (Point Of Sale)</span>
             <?php if (isset($msg)) { ?> <div class="alert_success"><?php echo $msg; ?></div><?php } ?>
 
@@ -124,8 +123,9 @@ if(isset($_POST['customer_add'])){
         </h4>
         <div class="py-5 flex flex-wrap gap-2 justify-start">
         </div>
-        <div class="w-full flex flex-col-reverse lg:flex-row gap-3">
-            <div class="w-full lg:w-6/12">
+
+        <div class="w-full flex flex-col-reverse lg:flex-row gap-3 flex_order">
+            <div class="w-full lg:w-6/12 flex_order_left">
                 <div style="position:relative;"
                     class="w-full mx-auto bg-white shadow-lg rounded border overflow-hidden border-gray-200">
 
@@ -330,7 +330,7 @@ if(isset($_POST['customer_add'])){
                 </div>
             </div>
 
-            <div class="w-full lg:w-6/12">
+            <div class="w-full lg:w-6/12 flex_order_right">
                 <div class="w-full mx-auto bg-white shadow-lg rounded-md border overflow-hidden border-gray-200">
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="w-full black">

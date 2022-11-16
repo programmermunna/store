@@ -101,7 +101,7 @@ $website = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting 
                       <form action="" method="POST" enctype="multipart/form-data">
                           <img style="padding-bottom:30px;max-width:100%" src="../upload/<?php echo $website['logo']?>" alt="Logo">
                           <br>
-                          <input type="file" name="file">
+                          <input class="input_file" type="file" name="file">
                           <input type="submit" name="add" value="Add">
                           <input type="submit" name="remove" value="remove">
                         </div>

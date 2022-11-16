@@ -62,7 +62,6 @@ $product = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product_setting 
                         </div>
                       </form>
 
-
                       <?php 
                       if(isset($_POST['add'])){
                         $file_name = $_FILES['file']['name'];
@@ -86,7 +85,7 @@ $product = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product_setting 
                         <label for="">Feather Image</label>
                           <img style="padding-bottom:30px;max-width:100%" src="../upload/<?php echo $product['file']?>" alt="Logo">
                           <br>
-                          <input type="file" name="file">
+                          <input class="input_file" type="file" name="file">
                           <input type="submit" name="add" value="Add">
                           <input type="submit" name="remove" value="remove">
                         </div>

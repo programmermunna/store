@@ -22,10 +22,12 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Store Management</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
+
+    <link rel="stylesheet" href="landing-dist/css/slicknav.css">
     <link rel="stylesheet" href="landing-dist/css/style.css">
     <link rel="stylesheet" href="landing-dist/css/custom.css">
-    <script src="https://unpkg.com/scrollreveal@4.0.0/landing-dist/scrollreveal.min.js"></script>
 </head>
 <body class="is-boxed has-animations">
     <div class="body-wrap">
@@ -38,7 +40,7 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
                             <?php
                             $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));
                             if($check>0){ ?>
-                            <ul>
+                            <ul id="menu">
                                 <li><a href="home.php">Home</a></li>
                                 <li><a href="about.php">About</a></li>
                                 <li><a href="terms.php">Terms</a></li>
@@ -69,3 +71,9 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
                 </div>
             </div>
         </header>
+
+<script>
+	$(function(){
+		$('#menu').slicknav();
+	});
+</script>
