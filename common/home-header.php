@@ -35,7 +35,8 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
             <div class="container">
                 <div class="site-header-inner">
                     <div class="brand header-brand">
-                        <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="../upload/logo.png" alt="Logo"><?php echo $setting['name'];?></a></div>
+                        <!-- <div class="logo"><a href="home.php"><img class="header-logo-image asset-light" src="../upload/logo.png" alt="Logo"></a></div> -->
+                        <div class="logo"><a href="home.php"><?php echo $setting['name'];?></div>
                         <div class="nav">
                             <?php
                             $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));

@@ -8,6 +8,58 @@ if(isset($_GET['src'])){
   $id = $_GET['id'];
 }
 
+$user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
+$order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$id"));
+?>
+<?php ob_start() ?>
+<div style="background-color:#fff;font-family: Open Sans, sans-serif;font-size:100%;font-weight:400;line-height:1.4;color:#000;">
+  <table style="max-width:670px;margin:50px auto 10px;border:1px solid gray;box-shadow:0 0 6px gray !important;">
+    <thead>
+      <tr>
+        <th style="text-align:left;padding:20px"><img style="max-width: 150px;" src="https://www.bangladeshisoftware.com/wp-content/uploads/2022/09/2222_vectorized.png" alt="bachana tours"></th>
+        <th style="text-align:right;font-weight:400;padding:20px">Date: <?php echo date("d-m-Y");?></th>
+      </tr>
+    </thead>
+    <tbody> 
+      <tr>
+        <td style="height:35px;"></td>
+      </tr>
+      <tr>
+        <td colspan="2" style="border: solid 1px #ddd; padding:10px 20px;">
+          <p style="font-size:14px;margin:0 0 6px 0;"><span style="font-weight:bold;display:inline-block;min-width:150px">Order status</span><b style="color:green;font-weight:normal;margin:0">
+          <?php if($order_data['status']=='Pending'){echo 'Success';}else{ echo 'Pending';}?>
+          </b></p>
+          <p style="font-size:14px;margin:0 0 6px 0;"><span style="font-weight:bold;display:inline-block;min-width:146px">Payment Number</span> <?php echo $order_data['pmn_number'];?></p>
+          <p style="font-size:14px;margin:0 0 6px 0;"><span style="font-weight:bold;display:inline-block;min-width:146px">Transaction ID</span> <?php echo $order_data['trans_id'];?></p>
+          <p style="font-size:14px;margin:0 0 0 0;"><span style="font-weight:bold;display:inline-block;min-width:146px">Order amount</span> ৳<?php echo $order_data['amount'];?></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="height:35px;"></td>
+      </tr>
+      <tr>
+        <td style="width:50%;padding:20px;vertical-align:top">
+          <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bolder;font-size:18px;text-decoration:underline"><b>User</b></p>
+          <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px">Name</span> <?php echo $user_data['name'];?></p>
+          <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Email</span> <?php echo $user_data['email'];?></p>
+          <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Address</span> <?php echo $user_data['address'];?></p>
+        </td>
+      </tr>
+
+    </tbody>
+    <tfooter>
+      <tr>
+        <td colspan="2" style="font-size:14px;padding:30px 20px">
+          <strong style="display:block;margin:0 0 10px 0;">Regards</strong> <?php echo $website['name'];?><br><br>
+          <b>Email:</b> <?php echo $website['email'];?><br>
+          <b>Address:</b> <?php echo $website['address'];?>
+        </td>
+      </tr>
+    </tfooter>
+  </table>
+</div>
+<?php $email_template = ob_get_clean()?>
+<?php
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $email = $_POST['email'];
@@ -27,13 +79,30 @@ if(isset($_POST['submit'])){
   $user_update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',permision='$status' WHERE id=$id");
   $order_update = mysqli_query($conn,"UPDATE orders SET pmn_method='$pmn_method', pmn_number='$pmn_number', trans_id='$trans_id', years='$years', years_num='$years_num', amount='$amount', status='$status' WHERE user_id=$id");
 
-  if($user_update && $order_update){
-    $msg = "Successfully Updated!";
-    header("location:orders-edit.php?src=$src&&id=$id&&msg=$msg");
+  if($user_update && $order_update && $order_data['status'] !== $status){
+
+  $sub = "Congratulations for Renew Store Software";
+  
+  $smtp_host = $mail['smtp_host'];
+  $smtp_username = $mail['smtp_user_name'];
+  $smtp_password = $mail['smtp_user_pass'];
+  $smtp_port = $mail['smtp_port'];
+  $smtp_secure = $mail['smtp_security'];
+  $site_email = $mail['site_email'];
+  $site_name = $mail['site_replay_email'];
+  
+  $address = $email;
+  $subject = $sub;
+  $body =  $email_template;
+  $send = sendVarifyCode($smtp_host,$smtp_username,$smtp_password,$smtp_port,$smtp_secure,$site_email,$site_name,$address,$body,$subject);
+  
+ $msg = 'Successfully Updated.';
+ header("location:orders-edit.php?msg=$msg");
+  }else{
+    $msg = 'Order Eidt Successfully.';
+ header("location:orders-edit.php?msg=$msg");
   }
 }
-$user_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$id"));
-$order_data = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$id"));
 ?>
   <div class="container-fluid py-4">
       <div class="row">

@@ -5,10 +5,8 @@ if($landing_id<1){
     header("location:user-login.php?msg=$msg");
 }
 $user_id = $user_info['id'];
-$orders = mysqli_fetch_assoc(mysqli_query($conn,"SELECT orders.*, admin_info.* FROM orders INNER JOIN admin_info ON orders.user_id=admin_info.id WHERE admin_info.id=$user_id"));
+$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$user_id"));
 $website = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM website_setting"));
-include("email_template.php");
-
 
 if(isset($_POST['submit'])){
     $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$user_id"));
@@ -26,27 +24,13 @@ if(isset($_POST['submit'])){
     $amount = $_POST['amount'];
     $time = time();
 
-    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");   
-
-    $sub = "Congratulations for Purchase Store Software";
-    $email = $orders['email'];
+    $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");     
     
-    $smtp_host = $mail['smtp_host'];
-    $smtp_username = $mail['smtp_user_name'];
-    $smtp_password = $mail['smtp_user_pass'];
-    $smtp_port = $mail['smtp_port'];
-    $smtp_secure = $mail['smtp_security'];
-    $site_email = $mail['site_email'];
-    $site_name = $mail['site_replay_email'];
-    
-    $address = $email;
-    $subject = $sub;
-    $body =  $email_template;
-    $send = sendVarifyCode($smtp_host,$smtp_username,$smtp_password,$smtp_port,$smtp_secure,$site_email,$site_name,$address,$body,$subject);
-    
+    if($insert){
    $msg = 'Your Mail was sent successfully.';
    header("location:order.php?msg=$msg");
     }
+  }
 }
 
 if(isset($_POST['renew'])){    
@@ -62,27 +46,11 @@ if(isset($_POST['renew'])){
 
     $insert = mysqli_query($conn,"INSERT INTO renew(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `status`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount','Pending', '$time')");
     
-    $sub = "Congratulations for Renew Store Software";
-    $email = $orders['email'];
-    
-    $smtp_host = $mail['smtp_host'];
-    $smtp_username = $mail['smtp_user_name'];
-    $smtp_password = $mail['smtp_user_pass'];
-    $smtp_port = $mail['smtp_port'];
-    $smtp_secure = $mail['smtp_security'];
-    $site_email = $mail['site_email'];
-    $site_name = $mail['site_replay_email'];
-    
-    $address = $email;
-    $subject = $sub;
-    $body =  $email_template;
-    $send = sendVarifyCode($smtp_host,$smtp_username,$smtp_password,$smtp_port,$smtp_secure,$site_email,$site_name,$address,$body,$subject);
-    
-   $msg = 'Your Mail was sent successfully.';
-   header("location:order.php?msg=$msg");
-    
+    if($insert){
+    $msg = "Order Has been Pending. Please Wait.";
+    header("location:order.php?msg=$msg");
+    }
 }
-
 ?>
         <main>
             <section class="hero">
