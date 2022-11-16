@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
   $msg = "Somethings error! Please try again.";
 }
 ?>
-    <!-- Main Content -->
+    <!-- Main Content --> 
     <main class="main_content">
 <!-- Side Navbar Links -->
 <?php include("common/sidebar.php");?>
