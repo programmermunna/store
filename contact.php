@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
 }
 
 ?>
-        <main>
+        <main> 
             <section class="hero">
                 <div class="container">
                     <div class="hero-inner">
