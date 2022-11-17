@@ -36,11 +36,16 @@ $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE 
             <div class="container">
                 <div class="site-header-inner">
                     <div class="brand header-brand">
-                        <?php if(!empty($setting['logo'])){?>
-                        <div style="margin:30px;width:200px;height:50px"><img src="upload/<?php echo $setting['logo'];?>"></div>
-                        <?php }else{?>
-                            <div style="margin:30px;font-size:22px"><a href="home.php"><?php echo $setting['name'];?></div>
-                            <?php }?>
+                        <div class="logo">
+                            <a href="home.php">
+                                <?php if(!empty($setting['logo'])){?>
+                                <div class="logo_img"><img src="upload/<?php echo $setting['logo'];?>"></div>
+                                <?php }else{?>
+                                <div class="logo_text" ><a href="home.php"><?php echo $setting['name'];?></div>
+                                <?php }?>
+                            </a>
+                        </div>
+
                         <div class="nav">
                             <?php
                             $check = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM admin_info WHERE id=$landing_id"));

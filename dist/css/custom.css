@@ -366,7 +366,11 @@ li.main-category.cat:hover .category-wrap {
   display: block;
   flex-direction: unset;
 }
-
+.input {
+  --tw-ring-offset-shadow: unset;
+  --tw-ring-shadow: unset;
+  box-shadow: unset;
+}
 @media only screen and (max-width: 768px) {
   .page_heading {
     display: block;
@@ -396,21 +400,6 @@ li.main-category.cat:hover .category-wrap {
 .main_content_container {
   flex-direction: unset;
 }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -305,13 +305,11 @@ if(isset($_POST['submit'])){
                 <div>
                     <label>Select Category</label>
                     <select style="display:block;width:100%;height:35px;margin-top:5px;" name="category" class="select_input">
-                        <option selected>Select category</option>
-                        <option value="Hyundai">Hyundai</option>
-                        <option value="Archar">Archar</option>
-                        <option value="Mitshubishi">Mitshubishi</option>
-                        <option value="Echovell">Echovell</option>
-                        <option value="Joyota">Joyota</option>
-                        <option value="Motorbike">Motorbike</option>
+                    <option style="display:none;" selected >Select category</option>
+                    <?php $brand = mysqli_query($conn,"SELECT * FROM category"); 
+                            while($row = mysqli_fetch_assoc($brand)){ ?>
+                                <option value="Hyundai"><?php echo $row['category']?></option>
+                            <?php }?>
                     </select>
                 </div>
 

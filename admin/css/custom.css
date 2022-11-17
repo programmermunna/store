@@ -108,6 +108,49 @@ p {
   display: flex;
   justify-content: space-between;
 }
+
+.edit>table{
+  width: 100%;
+}
+.edit>table>tbody>tr>td{
+  padding-left: 25px;
+}
+
+.edit>table>tbody>tr>td>a{
+  padding: 5px 20px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 768px) {
     
 .search_bar {

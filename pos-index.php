@@ -113,8 +113,6 @@ if(isset($_POST['customer_add'])){
         <!-- Page Main Content -->
         <h4 class="p-3 rounded bg-gray-50 shadow text-base font-semibold tracking-wider page_heading">
             <span>POS (Point Of Sale)</span>
-            <?php if (isset($msg)) { ?> <div class="alert_success"><?php echo $msg; ?></div><?php } ?>
-
              <div>
                 <button class="product_btn px-4 py-2 text-sm bg-blue-600 text-white rounded focus:ring">Add Product</button> 
                 <button class="customer_btn  px-4 py-2 text-sm bg-blue-600 text-white rounded focus:ring">Add Customer</button>
@@ -170,7 +168,7 @@ if(isset($_POST['customer_add'])){
                                         </th>
                                         <th class="table_th">
                                             <div class="table_th_div">
-                                                <span>Category</span>
+                                                <span>Price</span>
                                             </div>
                                         </th>
                                         <th class="table_th">
@@ -183,7 +181,7 @@ if(isset($_POST['customer_add'])){
                             <?php
                             if (isset($_POST['search'])) {
                                 $src_text = trim($_POST['src_text']);
-                                $sql = "SELECT * FROM product WHERE product_name = '$src_text' OR brand = '$src_text' OR category = '$src_text' AND admin_id=$id ORDER BY id DESC";
+                                $sql = "SELECT * FROM product WHERE product_name = '$src_text' OR brand = '$src_text' OR sell_price = '$src_text' AND admin_id=$id ORDER BY id DESC";
                                 $search_query = mysqli_query($conn, $sql);
                             }
                             if (isset($search_query)) {
@@ -204,7 +202,7 @@ if(isset($_POST['customer_add'])){
                                             <div class="text-center"><?php echo $row['brand'] ?></div>
                                         </td>
                                         <td class="p-3 border whitespace-nowrap">
-                                            <div class="text-center"><?php echo $row['category'] ?></div>
+                                            <div class="text-center"><?php echo $row['sell_price']?>৳</div>
                                         </td>
 
                                         <td class="p-3 border whitespace-nowrap">
@@ -249,7 +247,7 @@ if(isset($_POST['customer_add'])){
                                             <div class="text-center"><?php echo $row['brand'] ?></div>
                                         </td>
                                         <td class="p-3 border whitespace-nowrap">
-                                            <div class="text-center"><?php echo $row['category'] ?></div>
+                                            <div class="text-center"><?php echo $row['sell_price']?>৳</div>
                                         </td>
 
                                         <td class="p-3 border whitespace-nowrap">
@@ -404,15 +402,15 @@ if(isset($_POST['customer_add'])){
                                 </div>
                                 <div class="flex_center gap-5 py-1">
                                     <p>Sub Total:</p>
-                                    <p id="pos_total">$ <?php echo $total_subtotal['totalsum']; ?></p>
+                                    <p id="pos_total">$<?php echo $total_subtotal['totalsum']; ?></p>
                                 </div>
                                 <div class="flex_center gap-5 py-1">
                                     <p>Vat:</p>
-                                    <p id="pos_vat">$ <?php echo $total_vat['totalsum']; ?></p>
+                                    <p id="pos_vat">$<?php echo $total_vat['totalsum']; ?></p>
                                 </div>
                                 <div class="flex_center flex-col py-5 mt-2.5 border-t text-2xl">
                                     <p>Total:</p>
-                                    <p id="pos_total">$ <?php echo $total_total['totalsum']; ?></p>
+                                    <p id="pos_total">$<?php echo $total_total['totalsum']; ?></p>
                                 </div>
                             </div>
                             <div class="p-5 flex flex-col items-left gap-3">
@@ -442,9 +440,8 @@ if(isset($_POST['customer_add'])){
                                     class="border-4 border-gray-100 p-1 w-full outline-none bg-gray-100 rounded focus:ring">
                                 <select required name="status"
                                     class="border-4 border-gray-100 p-1 w-full outline-none bg-gray-100 rounded focus:ring">
-                                    <option selected value="" disabled>Status</option>
-                                    <option value="Pending">Pending</option>
                                     <option value="Success">Success</option>
+                                    <option value="Pending">Pending</option>
                                 </select>
                                 <input
                                     class="btn bg-blue-500 focus:bg-blue-700 active:bg-blue-700 hover:bg-blue-600 text-white p-2 focus:ring rounded"
@@ -489,13 +486,11 @@ if(isset($_POST['customer_add'])){
                             <div style="padding-bottom:15px;">
                             <label>Select Category</label>
                             <select style="border-width:0px;" name="category" class="input">
-                                <option selected >Select category</option>
-                                <option value="Hyundai">Hyundai</option>
-                                <option value="Archar">Archar</option>
-                                <option value="Mitshubishi">Mitshubishi</option>
-                                <option value="Echovell">Echovell</option>
-                                <option value="Joyota">Joyota</option>
-                                <option value="Motorbike">Motorbike</option>
+                            <?php $brand = mysqli_query($conn,"SELECT * FROM category"); 
+                            while($row = mysqli_fetch_assoc($brand)){ ?>
+                                <option style="display:none;" selected >Select category</option>
+                                <option value="Hyundai"><?php echo $row['category']?></option>
+                            <?php }?>
                             </select>
                             </div>
 

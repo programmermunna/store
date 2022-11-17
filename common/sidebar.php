@@ -12,15 +12,15 @@
         </a>
 
         <a href="brand.php">
-          <button class="btn nav_btn"><span class="nav_icon dashboard_icon"> </span><span class="nav_text">Brand's</span></button>
+          <button class="btn nav_btn"><span class="nav_icon dashboard_icon"> </span><span class="nav_text">Brand</span></button>
         </a>
 
         <a href="category-all.php">
-          <button class="btn nav_btn"><span class="nav_icon dashboard_icon"> </span><span class="nav_text">Categorie's</span></button>
+          <button class="btn nav_btn"><span class="nav_icon dashboard_icon"> </span><span class="nav_text">Categorie</span></button>
         </a>
 
         <a href="product-all.php">
-          <button class="btn nav_btn"><span class="nav_icon dashboard_icon"> </span><span class="nav_text">All Products</span></button>
+          <button class="btn nav_btn"><span class="nav_icon dashboard_icon"> </span><span class="nav_text">Products</span></button>
         </a>
 
         <div class="relative">

@@ -20,7 +20,12 @@ if(isset($_POST['submit'])){
   $file_tmp = $_FILES['file']['tmp_name'];
   move_uploaded_file($file_tmp,"upload/$file_name");
 
+  if(empty($file_name)){
+    $sql = "UPDATE customer SET name='$name', email='$email', phone='$phone', address='$address',city='$city',time='$time' WHERE id='$id'";
+  }else{
   $sql = "UPDATE customer SET name='$name', email='$email', phone='$phone', address='$address',city='$city', file='$file_name', time='$time' WHERE id='$id'";
+  }
+  
   $query = mysqli_query($conn,$sql);
   if($query){
   $msg = "Successfully Updated Customer!";

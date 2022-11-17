@@ -49,7 +49,7 @@ if($renew_time<$time){
           <div class="header_brand">
             <a href="index.php" class="go_home">
               <div>
-                <?php if($setting['logo']!=""){ ?>                
+                <?php if($setting['logo']!=""){ ?>               
                   <img style="width:200px;height:60px" src="upload/<?php echo $setting['logo'];?>" alt="">
                  <?php }else{ ?>                  
                   <span style="font-size:19px;color:#fff;"><?php echo $setting['name'];?></span>

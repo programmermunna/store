@@ -86,10 +86,11 @@ if(isset($_POST['renew'])){
                                 <div class="order-itmes">
                                     <label for="pmn_method">Payment Method</label>
                                     <select name="pmn_method">
-                                        <option value="Bkash">Bkash (0123456789)</option>
-                                        <option value="Nogod">Nogod (0123456789)</option>
-                                        <option value="Rocket">Rocket (0123456789)</option>
-                                        <option value="Upay">Upay (0123456789)</option>
+                                        <?php 
+                                        $pmn_method = mysqli_query($conn,"SELECT * FROM payment_method");
+                                        while($row = mysqli_fetch_assoc($pmn_method)){ ?>
+                                        <option value="<?php echo $row['pmn_method'];?>"><?php echo $row['pmn_method'];?> (<?php echo $row['pmn_number'];?>)</option>
+                                        <?php }?>
                                     </select>
                                 </div> 
                                 <div class="order-itmes">

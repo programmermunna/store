@@ -28,6 +28,12 @@ switch ($src) {
             header("location:$src-all.php?msg=$msg");
         }
       break;
+    case "payment-method":
+        if(mysqli_query($conn,"DELETE FROM payment_method WHERE id=$id")){
+            $msg = "Successfully Deleted!";
+            header("location:$src.php?msg=$msg");
+        }
+      break;
     default:
     header("location:index.php");
   }
