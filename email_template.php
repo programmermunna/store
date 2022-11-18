@@ -30,7 +30,7 @@
           <p style="margin:0 0 10px 0;padding:0;font-size:14px;"><span style="display:block;font-weight:bold;font-size:13px;">Address</span> <?php echo $orders['address'];?></p>
         </td>
       </tr>
-
+ 
     </tbody>
     <tfooter>
       <tr>
