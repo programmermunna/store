@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
   }
   
   $query = mysqli_query($conn,$sql);
-  if($query){
+  if($query){ 
   $msg = "Successfully Updated Customer!";
   header("location:customer-edit.php?msg=$msg&&id=$id");
   }else{
