@@ -14,7 +14,7 @@ switch ($action) {
     header("location:customer-all.php?msg=$msg");
     break;
   case "category":
-    $category = mysqli_query($conn, "DELETE FROM category WHERE id=$id;");
+    $category = mysqli_query($conn, "DELETE FROM category WHERE category !='Uncategories' id=$id;");
     $msg = "category has beeen delted!";
     header("location:category-all.php?msg=$msg");
     break;

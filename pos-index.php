@@ -12,7 +12,7 @@ $total_total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(total) AS tota
 $total_vat = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(vat_cost) AS totalsum FROM tmp_product WHERE order_no='$order'"));
 
 
-$all_customer = mysqli_query($conn, "SELECT * FROM customer ORDER BY id DESC");
+$all_customer = mysqli_query($conn, "SELECT * FROM customer WHERE admin_id=$id ORDER BY id DESC");
 if (isset($_POST['submit'])) {
   $customer_id = $_POST['customer_id'];
   $pay_method = $_POST['pay_method'];
@@ -49,7 +49,7 @@ if(isset($_POST['product_add'])){
     $brand = $_POST['brand'];
     $category = $_POST['category'];
     $date = $_POST['date'];
-    $product_code = $_POST['product_code'];
+    $product_code = rand(1000,9999999);
     $vat = $_POST['vat'];
     $time = time();
   
@@ -476,7 +476,7 @@ if(isset($_POST['customer_add'])){
                             <label>Select Brand</label>
                             <select style="border-width:0px;" name="brand" class="input">
                             <option style="display:none;" selected >Select Brand</option>
-                            <?php $brand = mysqli_query($conn,"SELECT * FROM brand"); 
+                            <?php $brand = mysqli_query($conn,"SELECT * FROM brand WHERE admin_id=$id"); 
                             while($row = mysqli_fetch_assoc($brand)){ ?>
                             <option value="<?php echo $row['name']?>"><?php echo $row['name']?></option>
                             <?php }?>
@@ -486,7 +486,7 @@ if(isset($_POST['customer_add'])){
                             <div style="padding-bottom:15px;">
                             <label>Select Category</label>
                             <select style="border-width:0px;" name="category" class="input">
-                            <?php $brand = mysqli_query($conn,"SELECT * FROM category"); 
+                            <?php $brand = mysqli_query($conn,"SELECT * FROM category WHERE admin_id=$id"); 
                             while($row = mysqli_fetch_assoc($brand)){ ?>
                                 <option style="display:none;" selected >Select category</option>
                                 <option value="Hyundai"><?php echo $row['category']?></option>
@@ -497,11 +497,6 @@ if(isset($_POST['customer_add'])){
                             <div>
                             <label>Date</label>
                             <input type="text" name="date" class="input" placeholder="mm/dd/yy" />
-                            </div>
-
-                            <div>
-                            <label>Product ID</label>
-                            <input required type="text" name="product_code" placeholder="Product id" class="input" />
                             </div>
 
                             <div>

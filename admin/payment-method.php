@@ -54,6 +54,7 @@ $pmn_method = mysqli_query($conn,"SELECT * FROM payment_method");
                         </div>
                       </form>
 
+                    <div class="payment_area">
                     <table class="table">
                       <thead>
                         <tr>
@@ -77,7 +78,7 @@ $pmn_method = mysqli_query($conn,"SELECT * FROM payment_method");
                         <?php }?>
                       </tbody>
                     </table>
-
+                    </div>
 
 
                       </div>

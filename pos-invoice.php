@@ -35,7 +35,7 @@ if(isset($_GET['order'])){
             
             <div >
                 <div >
-                    <table class="table" style="text-align:left;margin:30px auto;width:100%">
+                    <table class="table" style="text-align:left;margin:30px auto;width:100%;border-collapse: collapse;">
                         <thead>                     
                             <tr style="border:2px solid #dfdfdf;font-size:20px;">
                                 <th style="border:1px solid #dfdfdf;padding:10px">
@@ -65,15 +65,15 @@ if(isset($_GET['order'])){
                             </tr>
                             <?php } ?>
                             <tr style="border:2px solid #dfdfdf;">
-                                <td style="border:1px solid #dfdfdf;padding:10px;" colspan="2"><b>Vat</b></td>
+                                <td style="border:1px solid #dfdfdf;padding:10px;" colspan="3"><b>Vat</b></td>
                                 <td style="border:1px solid #dfdfdf;padding:10px;"><b>$<?php echo $total_vat['totalsum'];?></b></td>
                             </tr>
                             <tr style="border:2px solid #dfdfdf;">
-                                <td style="border:1px solid #dfdfdf;padding:10px;" colspan="2"><b>Subtotal</b></td>
+                                <td style="border:1px solid #dfdfdf;padding:10px;" colspan="3"><b>Subtotal</b></td>
                                 <td style="border:1px solid #dfdfdf;padding:10px;"><b>$<?php echo $total_subtotal['totalsum'];?></b></td>
                             </tr>
                             <tr style="border:2px solid #dfdfdf;">
-                                <td style="border:1px solid #dfdfdf;padding:10px;" colspan="2"><b>Total</b></td>
+                                <td style="border:1px solid #dfdfdf;padding:10px;" colspan="3"><b>Total</b></td>
                                 <td style="border:1px solid #dfdfdf;padding:10px;"><b>$<?php echo $total_total['totalsum'];?></b></td>
                             </tr>
                         </tbody>
@@ -90,7 +90,7 @@ if(isset($_GET['order'])){
                 </div>
             </div>
             <div style="margin-top:20px">Congratulations on the sale.</div>
-            <div style="margin-bottom:20px 0">Bangladeshi School —Copyright @ <?php echo $admin['website'];?></div>
+            <div style="margin-bottom:20px 0">Copyright @ <?php echo $setting['website'];?></div>
         </div>
     </section>
     <!-- Page Content -->
@@ -121,7 +121,6 @@ if(isset($_GET['order'])){
         <div class="w-full p-5 bg-white shadow rounded invoice_details_wrapper" id="invoice_details_wrapper">
             <h2 style="text-align:center;"><?php echo $setting['name'];?></h2>
             <p style="text-align:center;"><span><?php echo $setting['email'];?></span> , <span><?php echo $setting['address'];?></span></p>
-            <p style="text-align:center;"><?php echo $setting['address'];?></p>
             <div class="pb-5 binvoice-b flex flex-col items-end">
                 <p>Today</p>
                 <b><?php echo date("d-m-Y")?></b>
@@ -220,11 +219,8 @@ if(isset($_GET['order'])){
 
 //-----------send invoice info in email 
 if(isset($_POST['submit'])){
-
     $my_var;  
     $email =  $customer['email'];
-
-
     $mail = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM mail_setting WHERE id=1"));
 
     $smtp_host = $mail['smtp_host'];
@@ -236,13 +232,11 @@ if(isset($_POST['submit'])){
     $site_name = $mail['site_replay_email'];
     $address = $email;
     $body = $my_var;
-    $subject = 'Confirmation your order';
+    $subject = 'Congratulations For Purchase Product.';
     $send = sendVarifyCode($smtp_host,$smtp_username,$smtp_password,$smtp_port,$smtp_secure,$site_email,$site_name,$address,$body,$subject);
 
-      if($send){
-          $msg = 'Your message was sent successfully. Verify your message from your mail.';
-          header("location:verification.php?msg=$msg");
-      }
+    $msg = 'Mail was sent successfully.';
+    header("location:pos-invoice.php?msg=$msg");
 
 }         
 ?>

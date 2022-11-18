@@ -81,7 +81,7 @@ if(isset($_POST['submit'])){
 
   if($user_update && $order_update && $order_data['status'] !== $status){
 
-  $sub = "Congratulations for Renew Store Software";
+  $sub = "Congratulations for Purchase Store Managment Software";
   
   $smtp_host = $mail['smtp_host'];
   $smtp_username = $mail['smtp_user_name'];

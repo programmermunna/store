@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
     $insert = mysqli_query($conn,"INSERT INTO orders(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount', '$time')");     
     
     if($insert){
-   $msg = 'Your Mail was sent successfully.';
+   $msg = 'Successfully Placed Order. Please wait some moment.';
    header("location:order.php?msg=$msg");
     }
   }
@@ -47,7 +47,7 @@ if(isset($_POST['renew'])){
     $insert = mysqli_query($conn,"INSERT INTO renew(`user_id`, `years`, `years_num`, `pmn_method`, `pmn_number`, `trans_id`, `amount`, `status`, `time`) VALUE('$user_id', '$years','$years_num','$pmn_method', '$pmn_number', '$trans_id', '$amount','Pending', '$time')");
     
     if($insert){
-    $msg = "Order Has been Pending. Please Wait.";
+    $msg = "Thanks for renew. Please wait some moment.";
     header("location:order.php?msg=$msg");
     }
 }

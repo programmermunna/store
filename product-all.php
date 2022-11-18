@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     $query = mysqli_query($conn,$sql);
     if($query){
      $msg = "Successfully Created New Product!";
-     header("location:product-new.php?msg=$msg");
+     header("location:product-all.php?msg=$msg");
     }else{
      $msg = "Something is worng!";
     }

@@ -127,7 +127,6 @@ const renderCategories_ref = (get_categories) => {
     return show_categories;
 };
 all_categories_ul_ref.forEach((ele) => {
-    console.log('work')
     ele.innerHTML = renderCategories_ref(converted).join("").replace(/,/g, "");
 });
 

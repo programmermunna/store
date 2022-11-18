@@ -122,32 +122,18 @@ p {
   border-radius: 2px;
 }
 
+.navbar-vertical.navbar-expand-xs .navbar-collapse {
+  display: block;
+  overflow: auto;
+  height: unset;
+}
+.table-responsive {
+  overflow-x: unset;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.payment_area{
+  overflow: auto;
+}
 
 
 

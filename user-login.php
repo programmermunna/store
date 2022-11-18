@@ -27,11 +27,11 @@ if(isset($_POST['submit'])){
                             <div class="order">
                                 <div class="order-itmes">
                                     <label for="email">Email</label>
-                                    <input name="email" type="text">
+                                    <input name="email" type="email">
                                 </div>
                                 <div class="order-itmes">
                                     <label for="pass">Password</label>
-                                    <input name="pass" type="text">
+                                    <input name="pass" type="password">
                                 </div>
                                 <input name="submit" class="submit_btn" type="submit" value="Submit">
                             </div>
