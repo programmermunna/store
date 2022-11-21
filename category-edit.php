@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
 <!-- Side Navbar Links --> 
 
       <!-- Page Content --> 
-      <section class="content_wrapper"> 
+      <section class="content_wrapper">  
         <!-- Page Details Title -->
         <div class="page_details"> 
           <div>
