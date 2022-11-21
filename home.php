@@ -25,7 +25,7 @@
 								<?php echo $product['content']?>
                         </div>
                     </div>
-                </div>
+                </div> 
             </section>
 
 			<section class="cta section">
