@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
     }else{
       $msg = "You are not ablable. Please purchase first.";
       header("location:login.php?msg=$msg");
-    }
+    } 
   }else{
     $msg = "Email is not Vali.";
     header("location:login.php?msg=$msg");
