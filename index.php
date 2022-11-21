@@ -20,7 +20,7 @@
 ?>
     <!-- Main Content -->
     <main class="w-full flex bg-gray-100">
-      <!-- Side Navbar Links -->
+      <!-- Side Navbar Links --> 
       <?php include('common/sidebar.php')?>
       <!-- Side Navbar Links -->
 
