@@ -30,7 +30,7 @@ if(isset($_POST['submit'])){
     <!-- Side Navbar Links --> 
     <?php include("common/sidebar.php");?>
     <!-- Side Navbar Links -->
-
+ 
     <!-- Page Content -->
     <section class="content_wrapper">
         <!-- Page Details Title -->
