@@ -27,7 +27,7 @@ if(isset($_POST['update'])){
       header("location:category-all.php?msg=$msg");
   }else{
       echo "not";
-  } 
+  }  
 }  
 
 
