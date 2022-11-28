@@ -31,7 +31,7 @@ if(isset($_POST['submit'])){
   $msg = "Successfully Updated Customer!";
   header("location:customer-edit.php?msg=$msg&&id=$id");
   }else{
-  $msg = "Something is worng!";
+  $msg = "Something is worng!"; 
   }
 }
 ?>   
