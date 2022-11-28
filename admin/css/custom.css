@@ -1,0 +1,171 @@
+.order-view {
+  display: flex;
+  justify-content: space-around;
+}
+label {
+  display: block;
+  margin: 0;
+  margin-top: 10px;
+}
+.edit,
+.view {
+  box-shadow: 0 0 1px gray;
+  padding: 20px;
+  width: 50%;
+}
+.profile {
+  margin-top: 20px;
+}
+.profile > div {
+  display: flex;
+  justify-content: space-between;
+}
+.profile > div > div {
+  padding: 0 5px;
+}
+.profile > div > div > input {
+  width: 100%;
+  margin: 5px 10px;
+  margin-left: 0;
+  box-shadow: 0 0 2px gray;
+  border: none;
+  border-radius: 2px;
+  padding: 5px;
+}
+.profile > div > select {
+  width: 100%;
+  margin: 10px 0;
+  box-shadow: 0 0 2px gray;
+  border: none;
+  border-radius: 2px;
+  padding: 7px 5px;
+}
+.profile > div > input[type="submit"] {
+  width: 100%;
+  margin: 10px 0;
+  box-shadow: 0 0 2px gray;
+  border: none;
+  border-radius: 2px;
+  padding: 7px 5px;
+}
+
+.view {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px;
+}
+.view > .view-content {
+  width: 65%;
+  margin-top: 20px;
+}
+.view > .view-content > h3 {
+  margin: 0;
+  padding: 0;
+}
+.view > .view-content > h6,
+p {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+}
+.view > .view-content > p {
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+}
+.view > .view-img {
+  width: 35%;
+}
+.view > .view-img > img {
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
+  border-radius: 5px;
+}
+.top_search {
+  padding: 0 20px;
+}
+.top_search > form > input {
+  box-shadow: 0 0 2px gray;
+  border: none;
+  border-radius: 2px;
+  padding: 5px;
+  outline: none;
+}
+.top_search > form > button {
+  box-shadow: 0 0 2px gray;
+  border: none;
+  border-radius: 2px;
+  padding: 5px;
+}
+.top_search > form > button:hover {
+  background: rgb(255, 231, 231);
+}
+
+.search_bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit>table{
+  width: 100%;
+}
+.edit>table>tbody>tr>td{
+  padding-left: 25px;
+}
+
+.edit>table>tbody>tr>td>a{
+  padding: 5px 20px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-collapse {
+  display: block;
+  overflow: auto;
+  height: unset;
+}
+.table-responsive {
+  overflow-x: unset;
+}
+
+.payment_area{
+  overflow: auto;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    
+.search_bar {
+    display: block;
+}
+.order-view{
+    display: block;
+}
+.order-view> .edit,.view{
+    width: 100%;
+    display: block;
+    padding: 10px;
+}
+
+.view> .view-content{
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    text-align: center;
+}
+.view> .view-img{
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    text-align: center;
+}
+.input_file{
+    outline: auto;
+    width: 100%;
+    margin-bottom: 10px;
+}
+  }

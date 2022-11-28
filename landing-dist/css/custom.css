@@ -1,0 +1,195 @@
+body {
+  background: unset !important;
+  font-family: 'Mukti', Arial, sans-serif !important;
+}
+* {
+  font-family: 'Mukti', Arial, sans-serif !important;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  text-decoration: none !important;
+}
+
+.site-header,
+.body-wrap {
+  box-shadow: 1px 1px 5px #5763d8;
+  padding: 0;
+}
+.logo_img img{
+  width: 200px;
+  height: 50px;
+}
+
+.logo_text a {
+  font-size: 32px;
+}
+
+.header-brand {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  padding-bottom: 7px;
+}
+
+.nav {
+  padding-top: 15px;
+}
+
+.nav ul {
+  list-style: none;
+}
+
+.nav ul li {
+  display: inline-block;
+}
+
+.nav ul li a {
+  padding: 5px 10px;
+  color: #5763d8;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.header-last-itme {
+  background: #5763d8;
+  color: #fff !important;
+}
+
+.header-last-itme:hover {
+  background: #283df8 !important;
+}
+
+.nav ul li a:hover {
+  background: #5763d8;
+  color: #fff;
+}
+
+.template_img {
+  width: 100%;
+  height: 350px;
+  box-shadow: 0px 0px 4px gray;
+  border-radius: 5px;
+}
+
+.order {
+  padding: 20px;
+  border-radius: 5px;
+  color: gray;
+  box-shadow: 0px 0px 2px gray;
+}
+
+.order-itmes {
+  padding-top: 8px;
+}
+
+.order-itmes>label {
+  display: block;
+}
+
+.order-itmes>input,
+select {
+  border: 1px solid #ddd;
+  width: 100%;
+  border-radius: 2px;
+  outline: none;
+  padding-left: 5px;
+}
+
+.order-itmes>textarea {
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 150px;
+  padding-left: 5px;
+  outline: none;
+  border-radius: 2px;
+}
+
+.submit_btn {
+  margin-top: 20px;
+  padding: 5px 20px;
+  background: #5763d8;
+  border: none;
+  border-radius:2px;
+  color: #fff;
+}
+
+.submit_btn:hover {
+  background: #2439f5;
+  border: none;
+}
+
+.my_account {
+  /* text-align: center; */
+  width: 100%;
+  box-shadow: 0px 0px 2px gray;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px;
+}
+
+.my_account>div>img {
+  width: 200px;
+  height: 200px;
+  border-radius: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.my_account>div>h3 {
+  margin: 0;
+}
+
+.my_account>div>p {
+  font-size: 15px;
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  line-height: initial;
+}
+
+.my_account>div>span {
+  font-size: 15px;
+  display: block;
+}
+
+.product_summery {
+  display: flex;
+}
+
+.slicknav_menu {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #menu {
+    display: none;
+  }
+
+  .slicknav_menu {
+    display: block;
+  }
+
+  .logo {
+    padding: 20px 0;
+    margin: 0 auto;
+    padding-top: 0;
+  }
+
+  .logo a {
+    font-size: 25px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
+
+  .site-footer-inner {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 30px !important;
+  }
+
+  .my_account {
+    display: block;
+  }
+}
