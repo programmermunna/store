@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     }else{
     $msg = "Something is wrong!";
     header("location:contact.php?msg=$msg");
-    }
+    } 
 }
 
 ?>
