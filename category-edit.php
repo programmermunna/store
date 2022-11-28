@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
       <section class="content_wrapper">  
         <!-- Page Details Title -->
         <div class="page_details"> 
-          <div>
+          <div> 
             <a href="index.php" class="go_home"><small>Home</small></a>
             <small>/</small>
             <a href="all.php"><small>All Categories</small></a>
