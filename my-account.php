@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
 
     if($update){
         $msg = "Successfully Updated!";
-        header("location:my-account.php?msg=$msg");
+        header("location:my-account.php?msg=$msg"); 
     }
 }
     $order_info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM orders WHERE user_id=$landing_id"));
