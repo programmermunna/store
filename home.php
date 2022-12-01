@@ -24,7 +24,7 @@
 						<div class="features-header text-center">
 								<?php echo $product['content']?>
                         </div>
-                    </div>
+                    </div> 
                 </div> 
             </section>
 
