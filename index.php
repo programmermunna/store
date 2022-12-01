@@ -25,7 +25,7 @@
       <!-- Side Navbar Links -->
 
       <!-- Content -->
-      <section class="content_wrapper">
+      <section class="content_wrapper"> 
         <h4 class="text-xl font-medium">Dashboard</h4> 
         <br />
         <div class="home_content">
