@@ -25,7 +25,7 @@ if(isset($_GET['pr_id'])){
       $update = mysqli_query($conn,"UPDATE tmp_product SET subtotal='$subtotal',total=$total,vat_cost='$product_vat'  WHERE order_no = '$order' AND product_code = $pr_id");
 
       header("location:pos-index.php?order=$order");
-    }
+    } 
 
   }else{
     header("location:pos-index.php?order=$order");
