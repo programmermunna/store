@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
 
   $sql = "INSERT INTO seller(name,email,phone,address,shop,ac_holder,ac_number,bank,branch,city,file,time) VALUES('$name','$email','$phone','$address','$shop','$ac_holder','$ac_number','$bank','$branch','$city','$file_name','$time')";
   $query = mysqli_query($conn,$sql);
-  if($query){
+  if($query){ 
     $msg = "Successfully Created New Seller!";
   }else{
     $msg = "Something is worng!";
