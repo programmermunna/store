@@ -21,7 +21,7 @@ $row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product WHERE id='$i
             <a href="index.php" class="go_home"><small>Home</small></a>
             <small>/</small>
             <a href="all.php"><small>All Product</small></a>
-            <small>/</small>
+            <small>/</small> 
             <small>View Product</small>
           </div>
         </div>
