@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $years = $_POST['years'];
     $years_num = $years;
     $years = ($years*365)*86400;
-    $years = time()+$years;
+    $years = time()+$years; 
     $pmn_method = $_POST['pmn_method'];
     $pmn_number = $_POST['pmn_number'];
     $trans_id = $_POST['trans_id'];
