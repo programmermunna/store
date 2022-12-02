@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
   }
 }
 if(isset($_GET['msg'])){
-    $msg = $_GET['msg'];
+    $msg = $_GET['msg']; 
 }
 
 
