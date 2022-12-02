@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <!-- Page Main Content -->
+        <!-- Page Main Content --> 
         <div
           class="w-full p-5 bg-white shadow rounded"
           id="order_details_wrapper"
