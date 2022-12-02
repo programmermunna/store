@@ -20,7 +20,7 @@
 
         <!-- Page Main Content -->
         <section class="page_main_content">
-            <div class="main_content_container">
+            <div class="main_content_container"> 
                 <!-- Table -->
                 <div class="table_content_wrapper">
                     <div class="page_title">
