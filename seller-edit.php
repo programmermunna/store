@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
   $branch = $_POST['branch'];
   $city = $_POST['city'];
   $time = time();
-
+ 
   $file_name = $_FILES['file']['name'];
   $file_tmp = $_FILES['file']['tmp_name'];
   move_uploaded_file($file_tmp,"upload/$file_name");
