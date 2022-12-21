@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
     $_SESSION['admin_id'] = $id;
     setcookie('admin_id', $id , time()+2592000);
     header('location:index.php');
-    }else{
+    }else{ 
       $msg = "You are not ablable. Please purchase first."; 
       header("location:login.php?msg=$msg");
     } 
