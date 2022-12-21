@@ -25,7 +25,7 @@
                 <div class="table_content_wrapper">
                 <div style="display:flex; justify-content: space-between;" class="page_title">
                       <div>
-                            <h3>Pending Order</h3>
+                            <h3>Pending Order</h3> 
                         </div>
                         <div>
                         
