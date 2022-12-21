@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
         $update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address' WHERE id=$landing_id");
     }else{
         $update = mysqli_query($conn,"UPDATE admin_info SET name='$name', email='$email', address='$address',file='$file_name' WHERE id=$landing_id");
-    }
+    } 
 
     if($update){
         $msg = "Successfully Updated!";
