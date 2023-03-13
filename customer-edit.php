@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
   }else{
   $sql = "UPDATE customer SET name='$name', email='$email', phone='$phone', address='$address',city='$city', file='$file_name', time='$time' WHERE id='$id'";
   }
-  
+   
   $query = mysqli_query($conn,$sql);
   if($query){ 
   $msg = "Successfully Updated Customer!";
