@@ -26,7 +26,7 @@ switch ($action) {
   case "pending":
     $pending = mysqli_query($conn, "DELETE FROM tmp_product WHERE order_no=$order");
     $msg = "Has beeen delted!";
-    header("location:order-pending.php?msg=$msg"); 
+    header("location:order-pending.php?msg=$msg");  
     break;
   case "success":
     $success = mysqli_query($conn, "DELETE FROM product WHERE id=$id AND status='Success'");
