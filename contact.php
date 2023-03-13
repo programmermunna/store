@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
     header("location:contact.php?msg=$msg");
     } 
 }
-
+ 
 ?>
         <main> 
             <section class="hero"> 
