@@ -23,7 +23,7 @@
             id="email"
             type="email"
             placeholder="Enter Email Address..."
-          />
+          /> 
         </div>
         <div class="mb-6 text-center">
           <button
