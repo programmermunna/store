@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
     header("location:customer-all.php?msg=$msg");
     }else{
     echo "Something is worng!";
-    }
+    } 
   }
  
 ?>  
